@@ -5,10 +5,6 @@ import {
   FlatList,
   Dimensions,
   RefreshControl,
-  ScrollView,
-  TouchableOpacity,
-  BackHandler,
-  Alert,
   View,
   Text,
   ImageBackground,
@@ -18,16 +14,12 @@ import {
 import {
   Container,
   Header,
-  Title,
   Content,
-  Footer,
-  FooterTab,
   Button,
   Left,
   Right,
   Body,
   Icon,
-  Card,
 } from 'native-base';
 import {connect} from 'react-redux';
 import {Actions} from 'react-native-router-flux';
@@ -44,21 +36,20 @@ export class DetailPage extends Component {
     super(props);
 
     this.state = {
-      refreshing: false,
+      refreshing: true,
       data: {},
       pageId: 1,
+      fav: false,
     };
   }
 
   componentDidMount() {
     const {data, fetch_details, mediaType, pageId} = this.props;
-    console.log('logging details page data', this.props);
 
     const param = {
       media_type: mediaType,
       movie_id: data.id,
     };
-    // console.log(this.props);
     fetch_details(param);
     handleAndroidBackButton(this._backButton);
     this.setState({pageId: pageId});
@@ -71,11 +62,11 @@ export class DetailPage extends Component {
     removeAndroidBackButtonHandler();
   }
 
-  _backButton = () => {
-    const {prevData} = this.props;
-    // console.log('_backbutton log', this.props);
-    console.log('prevData', prevData);
+  toggleFav = () => {
+    this.setState({fav: !this.state.fav});
+  };
 
+  _backButton = () => {
     if (Actions.currentScene === 'DetailPage') {
       Actions.popTo(`${this.props.from}`);
     } else {
@@ -93,35 +84,19 @@ export class DetailPage extends Component {
         similar,
       } = this.props.details;
       const {data} = this.state;
-      // if (this.props.data.id  === this.state.pageId) {
-      console.log(
-        'this.props.data.id  === this.props.pageId',
-        this.props.data.id,
-        this.props.pageId,
-      );
-
-      this.setState(
-        {
-          data: Object.assign(data, details),
-          images,
-          videos,
-          // recommend,
-          similar,
-          pageId: this.state.pageId + 1,
-        },
-        () => {
-          console.log('udated this.props', this.props);
-        },
-      );
-      // }
+      this.setState({
+        data: Object.assign(data, details),
+        images,
+        videos,
+        similar,
+        pageId: this.state.pageId + 1,
+        refreshing: false,
+      });
     }
   }
 
   _onRefresh = () => {
-    // const { fetch_trending } = this.props;
-    this.setState({refreshing: false}, () => {
-      // fetch_trending();
-    });
+    this.setState({refreshing: false});
   };
 
   get_year = year => new Date(`${year}`).getFullYear();
@@ -192,16 +167,16 @@ export class DetailPage extends Component {
     } = data;
 
     let facts = [
-      {que: 'Status', ans: `${status}`, id: 1},
-      {que: 'Release Date', ans: `${release_date}`, id: 2},
+      {que: 'Status', ans: status ? `${status}` : '-', id: 1},
+      {que: 'Release Date', ans: release_date ? `${release_date}` : '-', id: 2},
       {
         que: 'Original Language',
-        ans: `${original_language}`,
+        ans: original_language ? `${original_language}` : '-',
         id: 3,
       },
-      {que: 'Runtime', ans: `${runtime}mins`, id: 4},
-      {que: 'Budget', ans: `$${budget}`, id: 5},
-      {que: 'Revenue', ans: `$${revenue}`, id: 6},
+      {que: 'Runtime', ans: runtime ? `${runtime}mins` : '-', id: 4},
+      {que: 'Budget', ans: budget ? `$${budget}` : '-', id: 5},
+      {que: 'Revenue', ans: revenue ? `$${revenue}` : '-', id: 6},
     ];
 
     let facts_view = facts.map(element => {
@@ -298,36 +273,12 @@ export class DetailPage extends Component {
             {title}
           </Text>
         </View>
-        {title !== 'Similar' && (
-          <TouchableOpacity
-            onPress={() =>
-              Actions.SeeMoreVideos({
-                data,
-                poster: this.props.data.poster_path,
-              })
-            } // this.openSeeAll(title, mediaData, mediaType)}
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <View style={{paddingHorizontal: 1}}>
-              <Text style={{color: '#FFFFFF'}}>SEE MORE</Text>
-            </View>
-            <View style={{paddingHorizontal: 10}}>
-              <Icon
-                name="ios-arrow-forward"
-                style={{color: '#FFFFFF', fontSize: 20}}
-              />
-            </View>
-          </TouchableOpacity>
-        )}
       </View>
     );
   };
 
   get_videos = data => {
     const {key} = data;
-    // console.log('video key', data);
 
     return (
       <View
@@ -400,7 +351,6 @@ export class DetailPage extends Component {
 
   get_similar_images = data => {
     const {mediaType} = this.props;
-    // console.log('data, dat', data,dat);
 
     const {poster_path, title, id, name, profile_path} = data;
     const newTitle = title ? title : name;
@@ -414,8 +364,6 @@ export class DetailPage extends Component {
           borderWidth: 1,
         }}
         onPress={() => {
-          // console.log('details prev', data, this.state.data);
-
           Actions.push('DetailPage', {
             data,
             from: `${this.props.from}`,
@@ -453,8 +401,7 @@ export class DetailPage extends Component {
   };
 
   render() {
-    const {mediaType} = this.props;
-    const {refreshing, data, videos, similar} = this.state;
+    const {refreshing, data, videos, similar, fav} = this.state;
     const {
       poster_path,
       backdrop_path,
@@ -471,8 +418,6 @@ export class DetailPage extends Component {
     const poster = profile_path ? profile_path : poster_path;
     const backdrop_img = backdrop_path ? backdrop_path : profile_path;
     const releaseDate = first_air_date ? first_air_date : release_date;
-    const link = 'https://www.youtube.com/watch?v=R4NwwXEfs2A';
-    // console.log('detailspage data', data);
 
     return (
       <Container>
@@ -503,17 +448,17 @@ export class DetailPage extends Component {
                   justifyContent: 'flex-end',
                 }}>
                 <View>
-                  <Button onPress={() => Actions.pop()} transparent>
-                    <Icon name="star-outline" />
+                  <Button onPress={() => this.toggleFav()} transparent>
+                    <Icon name={fav ? 'star' : 'star-outline'} />
                   </Button>
                 </View>
                 <View>
-                  <Button onPress={() => Actions.pop()} transparent>
+                  <Button onPress={() => {}} transparent>
                     <Icon name="share" />
                   </Button>
                 </View>
                 <View>
-                  <Button onPress={() => this._backButton()} transparent>
+                  <Button onPress={() => {}} transparent>
                     <Icon name="more" />
                   </Button>
                 </View>
@@ -528,77 +473,35 @@ export class DetailPage extends Component {
                 onRefresh={this._onRefresh}
               />
             }>
-            <View>
-              <Image
-                source={{
-                  uri: `https://image.tmdb.org/t/p/original${backdrop_img}`,
-                }}
-                style={[
-                  {
-                    width,
-                    height: 200,
-                    flexWrap: 'wrap',
-                  },
-                ]}
-                progressiveRenderingEnabled={true}
-              />
-            </View>
-            <View style={{flexDirection: 'row'}}>
+            {!refreshing && (
               <View>
-                <Image
-                  source={{
-                    uri: `https://image.tmdb.org/t/p/original${poster}`,
-                  }}
-                  style={[
-                    {
-                      width: 100,
-                      height: 150,
-                      marginTop: -34,
-                      marginHorizontal: 12,
-                    },
-                  ]}
-                  progressiveRenderingEnabled={true}
-                />
-              </View>
-              <View
-                style={{
-                  width: width - 130,
-                  flexDirection: 'column',
-                  marginTop: 10,
-                }}>
                 <View>
-                  <Text
-                    style={{
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: 'bold',
-                    }}>
-                    {newTitle}{' '}
-                    {releaseDate && (
-                      <Text
-                        style={{
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: '100',
-                        }}>
-                        ({this.get_year(releaseDate)})
-                      </Text>
-                    )}
-                  </Text>
+                  <Image
+                    source={{
+                      uri: `https://image.tmdb.org/t/p/original${backdrop_img}`,
+                    }}
+                    style={[
+                      {
+                        width,
+                        height: 200,
+                        flexWrap: 'wrap',
+                      },
+                    ]}
+                    progressiveRenderingEnabled={true}
+                  />
                 </View>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    marginTop: 5,
-                  }}>
-                  <View style={{justifyContent: 'center'}}>
+                <View style={{flexDirection: 'row'}}>
+                  <View>
                     <Image
-                      source={require('../../assets/stack-green.png')}
+                      source={{
+                        uri: `https://image.tmdb.org/t/p/original${poster}`,
+                      }}
                       style={[
                         {
-                          width: 30,
-                          height: 30,
+                          width: 100,
+                          height: 150,
+                          marginTop: -34,
+                          marginHorizontal: 12,
                         },
                       ]}
                       progressiveRenderingEnabled={true}
@@ -606,66 +509,112 @@ export class DetailPage extends Component {
                   </View>
                   <View
                     style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
+                      width: width - 130,
+                      flexDirection: 'column',
+                      marginTop: 10,
                     }}>
-                    <Icon
-                      name="star"
-                      style={{
-                        color: Colors.white,
-                        fontSize: 25,
-                        margin: 3,
-                      }}
-                    />
-                    <Text
-                      style={{
-                        color: Colors.white,
-                        fontSize: 20,
-                        margin: 3,
-                      }}>
-                      {vote_average}
-                    </Text>
-                  </View>
-
-                  <TouchableNativeFeedback
-                    onPress={() =>
-                      Actions.YouTubeVideo({
-                        newLink: videos[0].key,
-                      })
-                    }>
-                    <View
-                      style={{
-                        // flex: 1,
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                      }}>
-                      <Icon
-                        style={{
-                          color: Colors.white,
-                          fontSize: 25,
-                          margin: 3,
-                        }}
-                        name="play-circle"
-                      />
+                    <View>
                       <Text
                         style={{
                           color: Colors.white,
                           fontSize: 20,
-                          margin: 3,
+                          fontWeight: 'bold',
                         }}>
-                        Trailer
+                        {newTitle}{' '}
+                        {releaseDate && (
+                          <Text
+                            style={{
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: '100',
+                            }}>
+                            ({this.get_year(releaseDate)})
+                          </Text>
+                        )}
                       </Text>
                     </View>
-                  </TouchableNativeFeedback>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        marginTop: 5,
+                      }}>
+                      <View style={{justifyContent: 'center'}}>
+                        <Image
+                          source={require('../../assets/stack-green.png')}
+                          style={[
+                            {
+                              width: 30,
+                              height: 30,
+                            },
+                          ]}
+                          progressiveRenderingEnabled={true}
+                        />
+                      </View>
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                        }}>
+                        <Icon
+                          name="star"
+                          style={{
+                            color: Colors.white,
+                            fontSize: 25,
+                            margin: 3,
+                          }}
+                        />
+                        <Text
+                          style={{
+                            color: Colors.white,
+                            fontSize: 20,
+                            margin: 3,
+                          }}>
+                          {vote_average}
+                        </Text>
+                      </View>
+
+                      <TouchableNativeFeedback
+                        onPress={() =>
+                          Actions.YouTubeVideo({
+                            newLink: videos[0].key,
+                          })
+                        }>
+                        <View
+                          style={{
+                            // flex: 1,
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                          }}>
+                          <Icon
+                            style={{
+                              color: Colors.white,
+                              fontSize: 25,
+                              margin: 3,
+                            }}
+                            name="play-circle"
+                          />
+                          <Text
+                            style={{
+                              color: Colors.white,
+                              fontSize: 20,
+                              margin: 3,
+                            }}>
+                            Trailer
+                          </Text>
+                        </View>
+                      </TouchableNativeFeedback>
+                    </View>
+                    {this.get_genres(genres)}
+                  </View>
                 </View>
-                {this.get_genres(genres)}
+                {this.get_overview(overview)}
+                {this.get_facts(data)}
+                {/* {mediaType === 'movie' && this.get_facts(data)} */}
+                {this.videoLists(videos)}
+                {this.get_similar(similar)}
               </View>
-            </View>
-            {this.get_overview(overview)}
-            {this.get_facts(data)}
-            {/* {mediaType === 'movie' && this.get_facts(data)} */}
-            {this.videoLists(videos)}
-            {this.get_similar(similar)}
+            )}
           </Content>
         </ImageBackground>
       </Container>

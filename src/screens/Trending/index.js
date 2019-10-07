@@ -1,15 +1,12 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {
   View,
   Text,
   Image,
   FlatList,
-  Dimensions,
   RefreshControl,
-  ScrollView,
   TouchableOpacity,
-  BackHandler,
-  Alert,
   TouchableNativeFeedback,
 } from 'react-native';
 import {
@@ -17,8 +14,6 @@ import {
   Header,
   Title,
   Content,
-  Footer,
-  FooterTab,
   Button,
   Left,
   Right,
@@ -28,7 +23,7 @@ import {
 import {connect} from 'react-redux';
 
 import {fetch_trending} from '../../reducers/home';
-import SeeAllPage from '../../components/SeeAllPage';
+import SeeAllPage from '../../components/seeAllPage';
 import {Actions} from 'react-native-router-flux';
 import Colors from '../../constants/Colors';
 import {
@@ -74,15 +69,12 @@ export class Trending extends Component {
   }
 
   _backButton = () => {
-    console.log('back button pressed');
     const {showSeeAllPage} = this.state;
     if (showSeeAllPage) {
-      {
-        this.setState({
-          showSeeAllPage: false,
-          title: 'Trending',
-        });
-      }
+      this.setState({
+        showSeeAllPage: false,
+        title: 'Trending',
+      });
     } else {
       exitAlert();
     }
@@ -105,7 +97,6 @@ export class Trending extends Component {
   };
 
   trendList = (title = 'TOP MOVIES', trend, mediaType) => {
-    // console.log('trend', trend);
     const sliceTrend = trend ? trend.slice(0, 5) : null;
     return (
       <>
@@ -206,7 +197,7 @@ export class Trending extends Component {
   };
 
   trendPage = () => {
-    const {movieData, tvData, personData} = this.state;
+    const {movieData, tvData} = this.state;
     return (
       <>
         {this.trendList('Top Movies', movieData, 'movie')}
@@ -245,7 +236,6 @@ export class Trending extends Component {
           }>
           {(!showSeeAllPage && <>{this.trendPage()}</>) || (
             <SeeAllPage mediaData={mediaData} mediaType={mediaType} />
-            // <>{seeAllPage(mediaData, mediaType)}</>
           )}
         </Content>
       </Container>

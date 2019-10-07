@@ -28,8 +28,6 @@ const get_similar = (media_type, movie_id) =>
   );
 
 export function fetch_trending() {
-  console.log('TMDB_URL, TMDB_API_KEY', TMDB_URL, TMDB_API_KEY);
-
   return async dispatch => {
     await axios
       .all([get_trending('movie'), get_trending('tv'), get_trending('person')])
@@ -84,9 +82,6 @@ export function fetch_details(param) {
 
 export function fetch_Listing(param) {
   const {media_type, query_type, page} = param;
-  console.log(
-    `${TMDB_URL}/${media_type}/${query_type}?api_key=${TMDB_API_KEY}&language=en-US&page=${page}`,
-  );
 
   return async dispatch => {
     await axios

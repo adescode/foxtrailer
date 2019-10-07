@@ -1,15 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {
-  Button,
-  Container,
-  Content,
-  Header,
-  Left,
-  Body,
-  Right,
-  Title,
-} from 'native-base';
+import {Text, View, TouchableOpacity} from 'react-native';
+import {Content, Header, Left, Body, Right, Title} from 'native-base';
 import {Actions} from 'react-native-router-flux';
 import styles from './style';
 
@@ -110,9 +101,11 @@ class DrawerContent extends React.Component {
             <View style={styles.drawerBreakline} />
 
             <View style={[styles.drawerListContainer]}>
-              <Text style={[styles.drawerListTitle, styles.drawerListOthers]}>
-                About
-              </Text>
+              <TouchableOpacity onPress={() => Actions.About()}>
+                <Text style={[styles.drawerListTitle, styles.drawerListOthers]}>
+                  About
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
         </Content>

@@ -1,21 +1,10 @@
 import React, {Component} from 'react';
-import {
-  Image,
-  FlatList,
-  Dimensions,
-  RefreshControl,
-  ScrollView,
-  TouchableOpacity,
-  BackHandler,
-  Alert,
-} from 'react-native';
+import {RefreshControl} from 'react-native';
 import {
   Container,
   Header,
   Title,
   Content,
-  Footer,
-  FooterTab,
   Button,
   Left,
   Right,
@@ -23,7 +12,7 @@ import {
   Icon,
 } from 'native-base';
 import {connect} from 'react-redux';
-import SeeAllPage from '../../components/SeeAllPage';
+import SeeAllPage from '../../components/seeAllPage';
 import {fetch_Listing} from '../../reducers/home';
 import {Actions} from 'react-native-router-flux';
 import {
@@ -91,14 +80,7 @@ export class Tv extends Component {
   };
 
   render() {
-    const {
-      loaded,
-      title,
-      showSeeAllPage,
-      mediaType,
-      refreshing,
-      listingData,
-    } = this.state;
+    const {showSeeAllPage, refreshing, listingData} = this.state;
 
     return (
       <Container>

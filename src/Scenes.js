@@ -11,6 +11,7 @@ import Tv from './screens/Tv';
 import DetailPage from './screens/DetailPage';
 
 import YouTubeVideo from './components/YouTubeVideo';
+import About from './screens/About';
 
 const Scenes = () => (
   <Router>
@@ -30,18 +31,22 @@ const Scenes = () => (
           />
           <Scene key="Movie" component={Movie} hideNavBar panHandlers={null} />
           <Scene key="Tv" component={Tv} hideNavBar panHandlers={null} />
+
           <Scene
             key="DetailPage"
             component={DetailPage}
             hideNavBar
             panHandlers={null}
           />
+
           <Scene
             key="YouTubeVideo"
             component={YouTubeVideo}
             hideNavBar
             panHandlers={null}
           />
+
+          <Scene key="About" component={About} hideNavBar panHandlers={null} />
         </Scene>
       </Drawer>
     </Stack>
