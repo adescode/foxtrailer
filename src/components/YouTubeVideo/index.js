@@ -8,6 +8,7 @@ import {
   handleAndroidBackButton,
   removeAndroidBackButtonHandler,
 } from '../../services/androidBackButton';
+import {YOUTUBE_API_KEY} from '../../constants/config';
 
 export default class YouTubeVideo extends React.Component {
   state = {
@@ -87,7 +88,7 @@ export default class YouTubeVideo extends React.Component {
                 this._youTubeRef = component;
               }}
               // You must have an API Key for the player to load in Android
-              apiKey="AIzaSyAOOCq7g4EKYeW2XWt95wcyUzlB32eJ2Lg"
+              apiKey={YOUTUBE_API_KEY}
               // Un-comment one of videoId / videoIds / playlist.
               // You can also edit these props while Hot-Loading in development mode to see how
               // it affects the loaded native module
