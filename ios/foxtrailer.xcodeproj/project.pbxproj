@@ -8,16 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* foxtrailerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* foxtrailerTests.m */; };
+		0412200F2357D2240080AB31 /* libPods-foxtrailer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0412200E2357D2240080AB31 /* libPods-foxtrailer.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1B7C18B32CF3D596392984C9 /* libPods-foxtrailer-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0439E0EC2357C9E00048F008 /* libPods-foxtrailer-tvOS.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* foxtrailerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* foxtrailerTests.m */; };
 		3D1A0DC2CE9973AD0CDC4636 /* libPods-foxtrailer-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 277646DFE570EE09582F11D1 /* libPods-foxtrailer-tvOSTests.a */; };
-		4362E54F986470DBC3371929 /* libPods-foxtrailer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D0F1EFEA6527F37AF9E4539 /* libPods-foxtrailer.a */; };
+		4755202D44E30980D61532EA /* libPods-foxtrailer-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0439E0EE2357C9E00048F008 /* libPods-foxtrailer-tvOSTests.a */; };
+		61D1FF906B1B76AA50AA5505 /* libPods-foxtrailerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0439E0F22357C9E00048F008 /* libPods-foxtrailerTests.a */; };
 		9A55DED6F93DE6F39DBB7CA6 /* libPods-foxtrailerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D26C5AD42EB834B6C262A69E /* libPods-foxtrailerTests.a */; };
 		A6A2FAEF5D6B2DEE77D6E23F /* libPods-foxtrailer-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E88F879A146B7B5AB98CDD6 /* libPods-foxtrailer-tvOS.a */; };
 /* End PBXBuildFile section */
@@ -44,6 +47,39 @@
 		00E356EE1AD99517003FC87E /* foxtrailerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = foxtrailerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* foxtrailerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = foxtrailerTests.m; sourceTree = "<group>"; };
+		0412200E2357D2240080AB31 /* libPods-foxtrailer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-foxtrailer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E0E42357C9DF0048F008 /* libDoubleConversion.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libDoubleConversion.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E0E62357C9DF0048F008 /* libFBReactNativeSpec.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFBReactNativeSpec.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E0E82357C9E00048F008 /* libFolly.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFolly.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E0EA2357C9E00048F008 /* libglog.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libglog.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E0EC2357C9E00048F008 /* libPods-foxtrailer-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-foxtrailer-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E0EE2357C9E00048F008 /* libPods-foxtrailer-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-foxtrailer-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E0F02357C9E00048F008 /* libPods-foxtrailer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-foxtrailer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E0F22357C9E00048F008 /* libPods-foxtrailerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-foxtrailerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E0F42357C9E00048F008 /* libRCTTypeSafety.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRCTTypeSafety.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E0F62357C9E00048F008 /* libRCTYouTube.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRCTYouTube.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E0F82357C9E00048F008 /* libReact-Core.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-Core.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E0FA2357C9E00048F008 /* libReact-CoreModules.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-CoreModules.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E0FC2357C9E00048F008 /* libReact-cxxreact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-cxxreact.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E0FE2357C9E00048F008 /* libReact-jsi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-jsi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E1002357C9E00048F008 /* libReact-jsiexecutor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-jsiexecutor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E1022357C9E00048F008 /* libReact-jsinspector.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-jsinspector.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E1042357C9E00048F008 /* libreact-native-config.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-config.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E1062357C9E00048F008 /* libReact-RCTActionSheet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTActionSheet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E1082357C9E00048F008 /* libReact-RCTAnimation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTAnimation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E10A2357C9E00048F008 /* libReact-RCTBlob.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTBlob.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E10C2357C9E00048F008 /* libReact-RCTImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTImage.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E10E2357C9E00048F008 /* libReact-RCTLinking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTLinking.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E1102357C9E00048F008 /* libReact-RCTNetwork.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTNetwork.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E1122357C9E00048F008 /* libReact-RCTSettings.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTSettings.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E1142357C9E00048F008 /* libReact-RCTText.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTText.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E1162357C9E00048F008 /* libReact-RCTVibration.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTVibration.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E1182357C9E00048F008 /* libReactCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReactCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E11A2357C9E00048F008 /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E11C2357C9E00048F008 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E11E2357C9E00048F008 /* libYoga.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libYoga.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0439E1202357C9E00048F008 /* libYoutubePlayer-in-WKWebView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libYoutubePlayer-in-WKWebView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0493F1602357C7BE0074FEEF /* libreact-native-config.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-config.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* foxtrailer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = foxtrailer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = foxtrailer/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = foxtrailer/AppDelegate.m; sourceTree = "<group>"; };
@@ -75,6 +111,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A55DED6F93DE6F39DBB7CA6 /* libPods-foxtrailerTests.a in Frameworks */,
+				61D1FF906B1B76AA50AA5505 /* libPods-foxtrailerTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,7 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4362E54F986470DBC3371929 /* libPods-foxtrailer.a in Frameworks */,
+				0412200F2357D2240080AB31 /* libPods-foxtrailer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6A2FAEF5D6B2DEE77D6E23F /* libPods-foxtrailer-tvOS.a in Frameworks */,
+				1B7C18B32CF3D596392984C9 /* libPods-foxtrailer-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D1A0DC2CE9973AD0CDC4636 /* libPods-foxtrailer-tvOSTests.a in Frameworks */,
+				4755202D44E30980D61532EA /* libPods-foxtrailer-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +178,39 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0412200E2357D2240080AB31 /* libPods-foxtrailer.a */,
+				0439E0E42357C9DF0048F008 /* libDoubleConversion.a */,
+				0439E0E62357C9DF0048F008 /* libFBReactNativeSpec.a */,
+				0439E0E82357C9E00048F008 /* libFolly.a */,
+				0439E0EA2357C9E00048F008 /* libglog.a */,
+				0439E0EC2357C9E00048F008 /* libPods-foxtrailer-tvOS.a */,
+				0439E0EE2357C9E00048F008 /* libPods-foxtrailer-tvOSTests.a */,
+				0439E0F02357C9E00048F008 /* libPods-foxtrailer.a */,
+				0439E0F22357C9E00048F008 /* libPods-foxtrailerTests.a */,
+				0439E0F42357C9E00048F008 /* libRCTTypeSafety.a */,
+				0439E0F62357C9E00048F008 /* libRCTYouTube.a */,
+				0439E0F82357C9E00048F008 /* libReact-Core.a */,
+				0439E0FA2357C9E00048F008 /* libReact-CoreModules.a */,
+				0439E0FC2357C9E00048F008 /* libReact-cxxreact.a */,
+				0439E0FE2357C9E00048F008 /* libReact-jsi.a */,
+				0439E1002357C9E00048F008 /* libReact-jsiexecutor.a */,
+				0439E1022357C9E00048F008 /* libReact-jsinspector.a */,
+				0439E1042357C9E00048F008 /* libreact-native-config.a */,
+				0439E1062357C9E00048F008 /* libReact-RCTActionSheet.a */,
+				0439E1082357C9E00048F008 /* libReact-RCTAnimation.a */,
+				0439E10A2357C9E00048F008 /* libReact-RCTBlob.a */,
+				0439E10C2357C9E00048F008 /* libReact-RCTImage.a */,
+				0439E10E2357C9E00048F008 /* libReact-RCTLinking.a */,
+				0439E1102357C9E00048F008 /* libReact-RCTNetwork.a */,
+				0439E1122357C9E00048F008 /* libReact-RCTSettings.a */,
+				0439E1142357C9E00048F008 /* libReact-RCTText.a */,
+				0439E1162357C9E00048F008 /* libReact-RCTVibration.a */,
+				0439E1182357C9E00048F008 /* libReactCommon.a */,
+				0439E11A2357C9E00048F008 /* libRNGestureHandler.a */,
+				0439E11C2357C9E00048F008 /* libRNVectorIcons.a */,
+				0439E11E2357C9E00048F008 /* libYoga.a */,
+				0439E1202357C9E00048F008 /* libYoutubePlayer-in-WKWebView.a */,
+				0493F1602357C7BE0074FEEF /* libreact-native-config.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				6D0F1EFEA6527F37AF9E4539 /* libPods-foxtrailer.a */,
@@ -161,7 +233,6 @@
 				1E3A6C2D27046F7144AC1BA1 /* Pods-foxtrailerTests.debug.xcconfig */,
 				6D52E3B022BFBE7633BC50BB /* Pods-foxtrailerTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -286,7 +357,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -306,7 +377,7 @@
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "foxtrailer" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -825,6 +896,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -878,6 +950,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
