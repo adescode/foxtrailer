@@ -7,7 +7,6 @@ import {
   FlatList,
   RefreshControl,
   TouchableOpacity,
-  TouchableNativeFeedback,
 } from 'react-native';
 import {
   Container,
@@ -154,7 +153,7 @@ export class Trending extends Component {
     const uri = poster_path ? poster_path : profile_path;
 
     return (
-      <TouchableNativeFeedback
+      <TouchableOpacity
         key={`${id}`}
         style={{
           flex: 1,
@@ -192,7 +191,7 @@ export class Trending extends Component {
             <Text style={{color: '#FFFFFF'}}>{newTitle}</Text>
           </View>
         </View>
-      </TouchableNativeFeedback>
+      </TouchableOpacity>
     );
   };
 

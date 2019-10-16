@@ -8,7 +8,7 @@ import {
   View,
   Text,
   ImageBackground,
-  TouchableNativeFeedback,
+  TouchableOpacity,
   StyleSheet,
 } from 'react-native';
 import {
@@ -356,7 +356,7 @@ export class DetailPage extends Component {
     const newTitle = title ? title : name;
     const uri = poster_path ? poster_path : profile_path;
     return (
-      <TouchableNativeFeedback
+      <TouchableOpacity
         key={`${id}`}
         style={{
           flex: 1,
@@ -392,7 +392,7 @@ export class DetailPage extends Component {
             <Text style={{color: '#FFFFFF'}}>{newTitle}</Text>
           </View>
         </View>
-      </TouchableNativeFeedback>
+      </TouchableOpacity>
     );
   };
 
@@ -574,7 +574,7 @@ export class DetailPage extends Component {
                         </Text>
                       </View>
 
-                      <TouchableNativeFeedback
+                      <TouchableOpacity
                         onPress={() =>
                           Actions.YouTubeVideo({
                             newLink: videos[0].key,
@@ -603,7 +603,7 @@ export class DetailPage extends Component {
                             Trailer
                           </Text>
                         </View>
-                      </TouchableNativeFeedback>
+                      </TouchableOpacity>
                     </View>
                     {this.get_genres(genres)}
                   </View>

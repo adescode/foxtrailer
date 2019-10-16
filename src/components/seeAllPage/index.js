@@ -6,7 +6,7 @@ import {
   Image,
   FlatList,
   Dimensions,
-  TouchableNativeFeedback,
+  TouchableOpacity,
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 const {height, width} = Dimensions.get('window');
@@ -30,7 +30,7 @@ const SeeAllCard = ({data, mediaType}) => {
   const newTitle = title ? title : name;
   const uri = poster_path ? poster_path : profile_path;
   return (
-    <TouchableNativeFeedback
+    <TouchableOpacity
       key={id}
       style={{
         borderColor: 'transparent',
@@ -65,7 +65,7 @@ const SeeAllCard = ({data, mediaType}) => {
           <Text style={{color: '#FFFFFF'}}>{newTitle}</Text>
         </View>
       </View>
-    </TouchableNativeFeedback>
+    </TouchableOpacity>
   );
 };
 
