@@ -42,14 +42,18 @@ class About extends Component {
             <View style={{flex: 1}}>
               <Text
                 style={{alignSelf: 'center', fontSize: 30, fontWeight: 'bold'}}>
-                FOX TRAILER
+                About Me
               </Text>
               <View style={{padding: 10}}>
                 <Text style={{fontSize: 16, letterSpacing: 0.4}}>
-                  The title "FOX" from "FOX TRAILER" was pick after the username
-                  of the project supervisor White Fox on Reactiflux, because
-                  it's a Movie and Tv-Show trailer app, it was then named Fox
-                  Trailer
+                  I am Adelaja Ibrahim. I am proficient in using, React,
+                  React-Native, NodeJS, GraphQL MongoDB, Firebase, Zeplin, Adobe
+                  XD, jQuery, and GIT. I also have integrated a lot of APIs for
+                  different applications, including by not limited to Google
+                  map, geolocation, push notification, email service, VoIP
+                  service, online payment and real time chat. Currently
+                  developed more of react-native apps like bank app, ride
+                  sharing app, movie app and delivery App.
                 </Text>
               </View>
             </View>

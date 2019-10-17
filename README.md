@@ -58,7 +58,7 @@ $ react-native run-android
 #### Android
 
 React-native >= 0.60 now auto link modules, but some modules require
-some hand manually additions for it to function properly, Mosules like <br>
+some hand manually additions for it to function properly, Modules like <br>
 `react-native-config`
 <br>
 `react-native-vector-icons`
@@ -74,5 +74,5 @@ apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
 Remove inline style<br>
 Allow Android back button on some other screens<br>
-Create seperate elememt for some functions in details page<br>
+Create separate element for some functions in details page<br>
 Add splash screen and Icon<br>
