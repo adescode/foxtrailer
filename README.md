@@ -2,6 +2,10 @@
 
 Discover Movies and TV shows
 
+
+![FoxTrailer-screenshots](https://firebasestorage.googleapis.com/v0/b/lovemate-5fd27.appspot.com/o/Screenshot_20191004-161929.png?alt=media&token=a5a725bc-1f55-40b9-8e25-376d5272ab10)
+
+
 ### Download Debug APK file
 
 - [Download from Degug-APK from Google Drive - v0.0.1](http://bit.ly/foxTrailer)
