@@ -23,10 +23,7 @@ import {
 } from 'native-base';
 import {connect} from 'react-redux';
 import {Actions} from 'react-native-router-flux';
-import {
-  handleAndroidBackButton,
-  removeAndroidBackButtonHandler,
-} from '../../services/androidBackButton';
+import HandleBack from '../../services/androidBackButton'
 import Colors from '../../constants/Colors';
 import {fetch_details} from '../../reducers/home';
 const {height, width} = Dimensions.get('window');
@@ -400,6 +397,14 @@ export class DetailPage extends Component {
     return this.similar_list(data);
   };
 
+  onBack = () => {
+    if(this.status.editing) {
+      return true;
+    }
+  
+    return false;
+  }
+
   render() {
     const {refreshing, data, videos, similar, fav} = this.state;
     const {
@@ -420,179 +425,150 @@ export class DetailPage extends Component {
     const releaseDate = first_air_date ? first_air_date : release_date;
 
     return (
-      <Container>
-        <ImageBackground
-          source={{
-            uri: `https://image.tmdb.org/t/p/original${poster}`,
-          }}
-          progressiveRenderingEnabled={true}
-          blurRadius={40}
-          style={[{width: '100%', height: '100%'}]}>
-          <Header
-            transparent
-            style={{
-              backgroundColor: Colors.sec_transparent,
+      <HandleBack onBack={this.onBack}>
+        <Container>
+          <ImageBackground
+            source={{
+              uri: `https://image.tmdb.org/t/p/original${poster}`,
             }}
-            androidStatusBarColor={'transparent'}>
-            <Left>
-              <Button onPress={() => this._backButton()} transparent>
-                <Icon name="arrow-back" />
-              </Button>
-            </Left>
-            <Body />
-            <Right>
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: 'row',
-                  justifyContent: 'flex-end',
-                }}>
-                <View>
-                  <Button onPress={() => this.toggleFav()} transparent>
-                    <Icon name={fav ? 'star' : 'star-outline'} />
-                  </Button>
+            progressiveRenderingEnabled={true}
+            blurRadius={40}
+            style={[{width: '100%', height: '100%'}]}>
+            <Header
+              transparent
+              style={{
+                backgroundColor: Colors.sec_transparent,
+              }}
+              androidStatusBarColor={'transparent'}>
+              <Left>
+                <Button onPress={() => this._backButton()} transparent>
+                  <Icon name="arrow-back" />
+                </Button>
+              </Left>
+              <Body />
+              <Right>
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: 'row',
+                    justifyContent: 'flex-end',
+                  }}>
+                  <View>
+                    <Button onPress={() => this.toggleFav()} transparent>
+                      <Icon name={fav ? 'star' : 'star-outline'} />
+                    </Button>
+                  </View>
+                  <View>
+                    <Button onPress={() => {}} transparent>
+                      <Icon name="share" />
+                    </Button>
+                  </View>
+                  <View>
+                    <Button onPress={() => {}} transparent>
+                      <Icon name="more" />
+                    </Button>
+                  </View>
                 </View>
+              </Right>
+            </Header>
+            <Content
+              // contentContainerStyle={{ flex: 1, width }}
+              refreshControl={
+                <RefreshControl
+                  refreshing={refreshing}
+                  onRefresh={this._onRefresh}
+                />
+              }>
+              {!refreshing && (
                 <View>
-                  <Button onPress={() => {}} transparent>
-                    <Icon name="share" />
-                  </Button>
-                </View>
-                <View>
-                  <Button onPress={() => {}} transparent>
-                    <Icon name="more" />
-                  </Button>
-                </View>
-              </View>
-            </Right>
-          </Header>
-          <Content
-            // contentContainerStyle={{ flex: 1, width }}
-            refreshControl={
-              <RefreshControl
-                refreshing={refreshing}
-                onRefresh={this._onRefresh}
-              />
-            }>
-            {!refreshing && (
-              <View>
-                <View>
-                  <Image
-                    source={{
-                      uri: `https://image.tmdb.org/t/p/original${backdrop_img}`,
-                    }}
-                    style={[
-                      {
-                        width,
-                        height: 200,
-                        flexWrap: 'wrap',
-                      },
-                    ]}
-                    progressiveRenderingEnabled={true}
-                  />
-                </View>
-                <View style={{flexDirection: 'row'}}>
                   <View>
                     <Image
                       source={{
-                        uri: `https://image.tmdb.org/t/p/original${poster}`,
+                        uri: `https://image.tmdb.org/t/p/original${backdrop_img}`,
                       }}
                       style={[
                         {
-                          width: 100,
-                          height: 150,
-                          marginTop: -34,
-                          marginHorizontal: 12,
+                          width,
+                          height: 200,
+                          flexWrap: 'wrap',
                         },
                       ]}
                       progressiveRenderingEnabled={true}
                     />
                   </View>
-                  <View
-                    style={{
-                      width: width - 130,
-                      flexDirection: 'column',
-                      marginTop: 10,
-                    }}>
+                  <View style={{flexDirection: 'row'}}>
                     <View>
-                      <Text
-                        style={{
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: 'bold',
-                        }}>
-                        {newTitle}{' '}
-                        {releaseDate && (
-                          <Text
-                            style={{
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: '100',
-                            }}>
-                            ({this.get_year(releaseDate)})
-                          </Text>
-                        )}
-                      </Text>
+                      <Image
+                        source={{
+                          uri: `https://image.tmdb.org/t/p/original${poster}`,
+                        }}
+                        style={[
+                          {
+                            width: 100,
+                            height: 150,
+                            marginTop: -34,
+                            marginHorizontal: 12,
+                          },
+                        ]}
+                        progressiveRenderingEnabled={true}
+                      />
                     </View>
                     <View
                       style={{
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        marginTop: 5,
+                        width: width - 130,
+                        flexDirection: 'column',
+                        marginTop: 10,
                       }}>
-                      <View style={{justifyContent: 'center'}}>
-                        <Image
-                          source={require('../../assets/stack-green.png')}
-                          style={[
-                            {
-                              width: 30,
-                              height: 30,
-                            },
-                          ]}
-                          progressiveRenderingEnabled={true}
-                        />
-                      </View>
-                      <View
-                        style={{
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                        }}>
-                        <Icon
-                          name="star"
-                          style={{
-                            color: Colors.white,
-                            fontSize: 25,
-                            margin: 3,
-                          }}
-                        />
+                      <View>
                         <Text
                           style={{
                             color: Colors.white,
                             fontSize: 20,
-                            margin: 3,
+                            fontWeight: 'bold',
                           }}>
-                          {vote_average}
+                          {newTitle}{' '}
+                          {releaseDate && (
+                            <Text
+                              style={{
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: '100',
+                              }}>
+                              ({this.get_year(releaseDate)})
+                            </Text>
+                          )}
                         </Text>
                       </View>
-
-                      <TouchableOpacity
-                        onPress={() =>
-                          Actions.YouTubeVideo({
-                            newLink: videos[0].key,
-                          })
-                        }>
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          justifyContent: 'space-between',
+                          marginTop: 5,
+                        }}>
+                        <View style={{justifyContent: 'center'}}>
+                          <Image
+                            source={require('../../assets/stack-green.png')}
+                            style={[
+                              {
+                                width: 30,
+                                height: 30,
+                              },
+                            ]}
+                            progressiveRenderingEnabled={true}
+                          />
+                        </View>
                         <View
                           style={{
-                            // flex: 1,
                             flexDirection: 'row',
                             alignItems: 'center',
                           }}>
                           <Icon
+                            name="star"
                             style={{
                               color: Colors.white,
                               fontSize: 25,
                               margin: 3,
                             }}
-                            name="play-circle"
                           />
                           <Text
                             style={{
@@ -600,24 +576,57 @@ export class DetailPage extends Component {
                               fontSize: 20,
                               margin: 3,
                             }}>
-                            Trailer
+                            {vote_average}
                           </Text>
                         </View>
-                      </TouchableOpacity>
+
+                        <TouchableOpacity
+                          onPress={() =>
+                            Actions.YouTubeVideo({
+                              newLink: videos[0].key,
+                            })
+                          }>
+                          <View
+                            style={{
+                              // flex: 1,
+                              flexDirection: 'row',
+                              alignItems: 'center',
+                            }}>
+                            <Icon
+                              style={{
+                                color: Colors.white,
+                                fontSize: 25,
+                                margin: 3,
+                              }}
+                              name="play-circle"
+                            />
+                            <Text
+                              style={{
+                                color: Colors.white,
+                                fontSize: 20,
+                                margin: 3,
+                              }}>
+                              Trailer
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                      </View>
+                      {this.get_genres(genres)}
                     </View>
-                    {this.get_genres(genres)}
                   </View>
+                  {this.get_overview(overview)}
+                  {this.get_facts(data)}
+                  {/* {mediaType === 'movie' && this.get_facts(data)} */}
+                  {this.videoLists(videos)}
+                  {this.get_similar(similar)}
                 </View>
-                {this.get_overview(overview)}
-                {this.get_facts(data)}
-                {/* {mediaType === 'movie' && this.get_facts(data)} */}
-                {this.videoLists(videos)}
-                {this.get_similar(similar)}
-              </View>
-            )}
-          </Content>
-        </ImageBackground>
-      </Container>
+              )}
+            </Content>
+          </ImageBackground>
+        </Container>
+      </HandleBack>
+
+        
     );
   }
 }
