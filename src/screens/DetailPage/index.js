@@ -63,13 +63,13 @@ export class DetailPage extends Component {
     this.setState({fav: !this.state.fav});
   };
 
-  _backButton = () => {
-    if (Actions.currentScene === 'DetailPage') {
-      Actions.popTo(`${this.props.from}`);
-    } else {
-      Actions.pop();
-    }
-  };
+  // _backButton = () => {
+  //   if (Actions.currentScene === 'DetailPage') {
+  //     Actions.popTo(`${this.props.from}`);
+  //   } else {
+  //     Actions.pop();
+  //   }
+  // };
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.details !== this.props.details) {
