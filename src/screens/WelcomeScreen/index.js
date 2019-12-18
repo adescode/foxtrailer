@@ -1,5 +1,5 @@
 import React from 'react';
-import {Actions} from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 
 const WelcomeScreen = () => {
   Actions.Trending();

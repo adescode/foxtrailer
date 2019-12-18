@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {Component} from 'react';
-import {View, Text} from 'react-native';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
 import {
   Container,
   Header,
@@ -14,9 +14,14 @@ import {
   Icon,
   Card,
 } from 'native-base';
-import {Actions} from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
+import { trackScreenView } from '../../constants/firebaseFunc';
 
 class About extends Component {
+  componentDidMount() {
+    trackScreenView(Actions.currentScene);
+  }
+
   render() {
     return (
       <Container>
@@ -39,13 +44,17 @@ class About extends Component {
         </Header>
         <Content padder>
           <Card>
-            <View style={{flex: 1}}>
+            <View style={{ flex: 1 }}>
               <Text
-                style={{alignSelf: 'center', fontSize: 30, fontWeight: 'bold'}}>
+                style={{
+                  alignSelf: 'center',
+                  fontSize: 30,
+                  fontWeight: 'bold',
+                }}>
                 About Me
               </Text>
-              <View style={{padding: 10}}>
-                <Text style={{fontSize: 16, letterSpacing: 0.4}}>
+              <View style={{ padding: 10 }}>
+                <Text style={{ fontSize: 16, letterSpacing: 0.4 }}>
                   I am Adelaja Ibrahim. I am proficient in using, React,
                   React-Native, NodeJS, GraphQL MongoDB, Firebase, Zeplin, Adobe
                   XD, jQuery, and GIT. I also have integrated a lot of APIs for

@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -19,25 +19,18 @@ import {
   Body,
   Icon,
 } from 'native-base';
-import {connect} from 'react-redux';
-import analytics from '@react-native-firebase/analytics';
+import { connect } from 'react-redux';
 
-import {fetch_trending} from '../../reducers/home';
+import { fetch_trending } from '../../reducers/home';
 import SeeAllPage from '../../components/seeAllPage';
-import {Actions} from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import Colors from '../../constants/Colors';
 import {
   handleAndroidBackButton,
   exitAlert,
   removeAndroidBackButtonHandler,
 } from '../../services/androidBackButton';
-
-async function onProductView() {
-  await analytics().setUserProperties({
-    account_type: 'gold',
-    account_name: 'Gold Badge',
-  });
-}
+import { trackScreenView } from '../../constants/firebaseFunc';
 
 export class Trending extends Component {
   constructor(props) {
@@ -51,15 +44,15 @@ export class Trending extends Component {
   }
 
   componentDidMount() {
-    const {fetch_trending} = this.props;
+    const { fetch_trending } = this.props;
     fetch_trending();
     handleAndroidBackButton(this._backButton);
-    onProductView();
+    trackScreenView(Actions.currentScene);
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.trending !== this.props.trending) {
-      const {movie, tv, person} = this.props.trending;
+      const { movie, tv, person } = this.props.trending;
       this.setState(
         {
           movieData: movie,
@@ -67,7 +60,7 @@ export class Trending extends Component {
           personData: person,
         },
         () => {
-          this.setState({loaded: true, refreshing: false});
+          this.setState({ loaded: true, refreshing: false });
         },
       );
     }
@@ -78,7 +71,7 @@ export class Trending extends Component {
   }
 
   _backButton = () => {
-    const {showSeeAllPage} = this.state;
+    const { showSeeAllPage } = this.state;
     if (showSeeAllPage) {
       this.setState({
         showSeeAllPage: false,
@@ -90,8 +83,8 @@ export class Trending extends Component {
   };
 
   _onRefresh = () => {
-    const {fetch_trending} = this.props;
-    this.setState({refreshing: true}, () => {
+    const { fetch_trending } = this.props;
+    this.setState({ refreshing: true }, () => {
       fetch_trending();
     });
   };
@@ -115,7 +108,7 @@ export class Trending extends Component {
           data={sliceTrend}
           horizontal={true}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({item}) => {
+          renderItem={({ item }) => {
             return this.imageCard(item, mediaType);
           }}
         />
@@ -134,8 +127,8 @@ export class Trending extends Component {
           backgroundColor: Colors.sec_lighter,
           padding: 5,
         }}>
-        <View style={{paddingHorizontal: 10}}>
-          <Text style={{color: '#ffffff'}}>{title}</Text>
+        <View style={{ paddingHorizontal: 10 }}>
+          <Text style={{ color: '#ffffff' }}>{title}</Text>
         </View>
         <TouchableOpacity
           onPress={() => this.openSeeAll(title, mediaData, mediaType)}
@@ -143,13 +136,13 @@ export class Trending extends Component {
             flexDirection: 'row',
             alignItems: 'center',
           }}>
-          <View style={{paddingHorizontal: 1}}>
-            <Text style={{color: Colors.primary}}>SEE ALL</Text>
+          <View style={{ paddingHorizontal: 1 }}>
+            <Text style={{ color: Colors.primary }}>SEE ALL</Text>
           </View>
-          <View style={{paddingHorizontal: 10}}>
+          <View style={{ paddingHorizontal: 10 }}>
             <Icon
               name="ios-arrow-forward"
-              style={{color: Colors.primary, fontSize: 20}}
+              style={{ color: Colors.primary, fontSize: 20 }}
             />
           </View>
         </TouchableOpacity>
@@ -158,7 +151,7 @@ export class Trending extends Component {
   };
 
   imageCard = (data, mediaType) => {
-    const {poster_path, title, id, name, profile_path} = data;
+    const { poster_path, title, id, name, profile_path } = data;
     const newTitle = title ? title : name;
     const uri = poster_path ? poster_path : profile_path;
 
@@ -186,7 +179,7 @@ export class Trending extends Component {
                 cache: 'force-cache',
               }}
               defaultSource={require('../../assets/movie_default.jpg')}
-              style={{width: 220, height: 350}}
+              style={{ width: 220, height: 350 }}
             />
           </View>
           <View
@@ -198,7 +191,7 @@ export class Trending extends Component {
               padding: 10,
               backgroundColor: '#00060880',
             }}>
-            <Text style={{color: '#FFFFFF'}}>{newTitle}</Text>
+            <Text style={{ color: '#FFFFFF' }}>{newTitle}</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -206,7 +199,7 @@ export class Trending extends Component {
   };
 
   trendPage = () => {
-    const {movieData, tvData} = this.state;
+    const { movieData, tvData } = this.state;
     return (
       <>
         {this.trendList('Top Movies', movieData, 'movie')}
@@ -216,7 +209,7 @@ export class Trending extends Component {
   };
 
   render() {
-    const {loaded, title, showSeeAllPage, mediaData, mediaType} = this.state;
+    const { loaded, title, showSeeAllPage, mediaData, mediaType } = this.state;
     return (
       <Container>
         <Header transparent>
@@ -232,7 +225,7 @@ export class Trending extends Component {
             )}
           </Left>
           <Body>
-            <Title style={{fontWeight: 'bold'}}>{title}</Title>
+            <Title style={{ fontWeight: 'bold' }}>{title}</Title>
           </Body>
           <Right />
         </Header>
@@ -256,9 +249,6 @@ const mapStateToProps = state => ({
   trending: state.home.trending,
 });
 
-const mapDispatchToProps = {fetch_trending};
+const mapDispatchToProps = { fetch_trending };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Trending);
+export default connect(mapStateToProps, mapDispatchToProps)(Trending);

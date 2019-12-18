@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   Image,
   FlatList,
@@ -21,15 +21,16 @@ import {
   Body,
   Icon,
 } from 'native-base';
-import {connect} from 'react-redux';
-import {Actions} from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import {
   handleAndroidBackButton,
   removeAndroidBackButtonHandler,
 } from '../../services/androidBackButton';
 import Colors from '../../constants/Colors';
-import {fetch_details} from '../../reducers/home';
-const {height, width} = Dimensions.get('window');
+import { fetch_details } from '../../reducers/home';
+import { trackScreenView } from '../../constants/firebaseFunc';
+const { height, width } = Dimensions.get('window');
 
 export class DetailPage extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ export class DetailPage extends Component {
   }
 
   componentDidMount() {
-    const {data, fetch_details, mediaType} = this.props;
+    const { data, fetch_details, mediaType } = this.props;
 
     const param = {
       media_type: mediaType ? mediaType : data.media_type,
@@ -52,6 +53,7 @@ export class DetailPage extends Component {
     // console.log('details props', this.props);
     fetch_details(param);
     handleAndroidBackButton(this._backButton);
+    trackScreenView(Actions.currentScene);
   }
 
   componentWillUnmount() {
@@ -59,7 +61,7 @@ export class DetailPage extends Component {
   }
 
   toggleFav = () => {
-    this.setState({fav: !this.state.fav});
+    this.setState({ fav: !this.state.fav });
   };
 
   _backButton = () => {
@@ -79,7 +81,7 @@ export class DetailPage extends Component {
         // recommend,
         similar,
       } = this.props.details;
-      const {data} = this.state;
+      const { data } = this.state;
       this.setState({
         data: Object.assign(data, details),
         images,
@@ -91,7 +93,7 @@ export class DetailPage extends Component {
   }
 
   _onRefresh = () => {
-    this.setState({refreshing: false});
+    this.setState({ refreshing: false });
   };
 
   get_year = year => new Date(`${year}`).getFullYear();
@@ -162,16 +164,20 @@ export class DetailPage extends Component {
     } = data;
 
     let facts = [
-      {que: 'Status', ans: status ? `${status}` : '-', id: 1},
-      {que: 'Release Date', ans: release_date ? `${release_date}` : '-', id: 2},
+      { que: 'Status', ans: status ? `${status}` : '-', id: 1 },
+      {
+        que: 'Release Date',
+        ans: release_date ? `${release_date}` : '-',
+        id: 2,
+      },
       {
         que: 'Original Language',
         ans: original_language ? `${original_language}` : '-',
         id: 3,
       },
-      {que: 'Runtime', ans: runtime ? `${runtime}mins` : '-', id: 4},
-      {que: 'Budget', ans: budget ? `$${budget}` : '-', id: 5},
-      {que: 'Revenue', ans: revenue ? `$${revenue}` : '-', id: 6},
+      { que: 'Runtime', ans: runtime ? `${runtime}mins` : '-', id: 4 },
+      { que: 'Budget', ans: budget ? `$${budget}` : '-', id: 5 },
+      { que: 'Revenue', ans: revenue ? `$${revenue}` : '-', id: 6 },
     ];
 
     let facts_view = facts.map(element => {
@@ -239,13 +245,13 @@ export class DetailPage extends Component {
     // const sliceData = data && data.filter(value => value.type === 'Trailer');
     const sliceData = data && data.slice(0, 5);
     return (
-      <View style={{backgroundColor: '#fff3'}}>
+      <View style={{ backgroundColor: '#fff3' }}>
         {this.mediaTitle('Trailers', data)}
         <FlatList
           data={sliceData}
           horizontal={true}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({item}) => {
+          renderItem={({ item }) => {
             return this.get_videos(item, data);
           }}
         />
@@ -264,8 +270,8 @@ export class DetailPage extends Component {
           // backgroundColor: Colors.sec_lighter,
           padding: 5,
         }}>
-        <View style={{paddingHorizontal: 10}}>
-          <Text style={{color: '#ffffff', fontWeight: 'bold', fontSize: 20}}>
+        <View style={{ paddingHorizontal: 10 }}>
+          <Text style={{ color: '#ffffff', fontWeight: 'bold', fontSize: 20 }}>
             {title}
           </Text>
         </View>
@@ -274,7 +280,7 @@ export class DetailPage extends Component {
   };
 
   get_videos = data => {
-    const {key} = data;
+    const { key } = data;
 
     return (
       <View
@@ -292,13 +298,13 @@ export class DetailPage extends Component {
                 uri: `http://i3.ytimg.com/vi/${key}/maxresdefault.jpg`,
               }}
               defaultSource={require('../../assets/movie_default.jpg')}
-              style={{width: 250, height: 150}}
+              style={{ width: 250, height: 150 }}
             />
           </View>
           <TouchableOpacity
             onPress={() => {
               // Alert.alert('Open video');
-              Actions.YouTubeVideo({newLink: key});
+              Actions.YouTubeVideo({ newLink: key });
             }}
             style={{
               position: 'absolute',
@@ -313,10 +319,10 @@ export class DetailPage extends Component {
             }}>
             <Button
               transparent
-              style={{alignSelf: 'center', padding: 50}}
+              style={{ alignSelf: 'center', padding: 50 }}
               onPress={() => {
                 // Alert.alert('Open video');
-                Actions.YouTubeVideo({newLink: key});
+                Actions.YouTubeVideo({ newLink: key });
               }}>
               <Icon
                 name="play-circle"
@@ -336,13 +342,13 @@ export class DetailPage extends Component {
   similar_list = data => {
     const sliceData = data && data.slice(0, 5);
     return (
-      <View style={{backgroundColor: '#fff3'}}>
+      <View style={{ backgroundColor: '#fff3' }}>
         {this.mediaTitle('Similar')}
         <FlatList
           data={sliceData}
           horizontal={true}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({item}) => {
+          renderItem={({ item }) => {
             return this.get_similar_images(item);
           }}
         />
@@ -351,9 +357,9 @@ export class DetailPage extends Component {
   };
 
   get_similar_images = data => {
-    const {mediaType} = this.props;
+    const { mediaType } = this.props;
 
-    const {poster_path, title, id, name, profile_path} = data;
+    const { poster_path, title, id, name, profile_path } = data;
     const newTitle = title ? title : name;
     const uri = poster_path ? poster_path : profile_path;
     return (
@@ -372,14 +378,14 @@ export class DetailPage extends Component {
           });
         }}
         useForeground={true}>
-        <View style={{margin: 2}}>
+        <View style={{ margin: 2 }}>
           <View>
             <Image
               source={{
                 uri: `https://image.tmdb.org/t/p/original${uri}`,
               }}
               defaultSource={require('../../assets/movie_default.jpg')}
-              style={{width: 150, height: 200}}
+              style={{ width: 150, height: 200 }}
             />
           </View>
           <View
@@ -391,7 +397,7 @@ export class DetailPage extends Component {
               padding: 10,
               backgroundColor: '#00060880',
             }}>
-            <Text style={{color: '#FFFFFF'}}>{newTitle}</Text>
+            <Text style={{ color: '#FFFFFF' }}>{newTitle}</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -403,7 +409,7 @@ export class DetailPage extends Component {
   };
 
   render() {
-    const {refreshing, data, videos, similar, fav, images} = this.state;
+    const { refreshing, data, videos, similar, fav, images } = this.state;
     const {
       poster_path,
       backdrop_path,
@@ -429,7 +435,7 @@ export class DetailPage extends Component {
           }}
           progressiveRenderingEnabled={true}
           blurRadius={40}
-          style={[{width: '100%', height: '100%'}]}>
+          style={[{ width: '100%', height: '100%' }]}>
           <Header
             transparent
             style={{
@@ -480,7 +486,10 @@ export class DetailPage extends Component {
                 <View>
                   <TouchableOpacity
                     onPress={() =>
-                      Actions.GalleryComponent({images, imageType: 'backdrops'})
+                      Actions.GalleryComponent({
+                        images,
+                        imageType: 'backdrops',
+                      })
                     }>
                     <Image
                       source={{
@@ -498,11 +507,14 @@ export class DetailPage extends Component {
                     />
                   </TouchableOpacity>
                 </View>
-                <View style={{flexDirection: 'row'}}>
+                <View style={{ flexDirection: 'row' }}>
                   <View>
                     <TouchableOpacity
                       onPress={() =>
-                        Actions.GalleryComponent({images, imageType: 'posters'})
+                        Actions.GalleryComponent({
+                          images,
+                          imageType: 'posters',
+                        })
                       }>
                       <Image
                         source={{
@@ -553,7 +565,7 @@ export class DetailPage extends Component {
                         justifyContent: 'space-between',
                         marginTop: 5,
                       }}>
-                      <View style={{justifyContent: 'center'}}>
+                      <View style={{ justifyContent: 'center' }}>
                         <Image
                           source={require('../../assets/stack-green.png')}
                           defaultSource={require('../../assets/movie_default.jpg')}
@@ -651,7 +663,7 @@ const mapStateToProps = state => ({
   details: state.home.details,
 });
 
-const mapDispatchToProps = {fetch_details};
+const mapDispatchToProps = { fetch_details };
 
 // eslint-disable-next-line prettier/prettier
 export default connect(mapStateToProps, mapDispatchToProps)(DetailPage);

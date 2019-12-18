@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {RefreshControl} from 'react-native';
+import React, { Component } from 'react';
+import { RefreshControl } from 'react-native';
 import {
   Container,
   Header,
@@ -11,14 +11,15 @@ import {
   Body,
   Icon,
 } from 'native-base';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import SeeAllPage from '../../components/seeAllPage';
-import {fetch_Listing} from '../../reducers/home';
-import {Actions} from 'react-native-router-flux';
+import { fetch_Listing } from '../../reducers/home';
+import { Actions } from 'react-native-router-flux';
 import {
   handleAndroidBackButton,
   removeAndroidBackButtonHandler,
 } from '../../services/androidBackButton';
+import { trackScreenView } from '../../constants/firebaseFunc';
 
 export class Tv extends Component {
   constructor(props) {
@@ -33,6 +34,7 @@ export class Tv extends Component {
   componentDidMount() {
     this.fetch_Listing();
     handleAndroidBackButton(this._backButton);
+    trackScreenView(Actions.currentScene);
   }
 
   componentWillUnmount() {
@@ -46,14 +48,14 @@ export class Tv extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.title !== this.props.title) {
-      const {fetch_Listing, media_type, query_type, page, title} = this.props;
-      this.setState({refreshing: true, title}, () => {
+      const { fetch_Listing, media_type, query_type, page, title } = this.props;
+      this.setState({ refreshing: true, title }, () => {
         fetch_Listing(media_type, query_type, page);
       });
     }
 
     if (prevProps.listing !== this.props.listing) {
-      const {listing, media_type, title} = this.props;
+      const { listing, media_type, title } = this.props;
       this.setState({
         listingData: listing.results,
         refreshing: false,
@@ -63,7 +65,7 @@ export class Tv extends Component {
   }
 
   fetch_Listing = () => {
-    const {fetch_Listing, query_type} = this.props;
+    const { fetch_Listing, query_type } = this.props;
     const param = {
       media_type: 'tv',
       query_type,
@@ -77,7 +79,7 @@ export class Tv extends Component {
   };
 
   render() {
-    const {showSeeAllPage, refreshing, listingData} = this.state;
+    const { showSeeAllPage, refreshing, listingData } = this.state;
 
     return (
       <Container>
@@ -129,7 +131,7 @@ const mapStateToProps = state => ({
   listing: state.home.listing,
 });
 
-const mapDispatchToProps = {fetch_Listing};
+const mapDispatchToProps = { fetch_Listing };
 
 export default connect(
   mapStateToProps,
