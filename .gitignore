@@ -64,7 +64,7 @@ buck-out/
 *.env
 
 # Config
-src/constants/config.js
+# src/constants/config.js
 
 # google-services
 *google-services.json
