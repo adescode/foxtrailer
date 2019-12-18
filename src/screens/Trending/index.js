@@ -20,6 +20,7 @@ import {
   Icon,
 } from 'native-base';
 import {connect} from 'react-redux';
+import analytics from '@react-native-firebase/analytics';
 
 import {fetch_trending} from '../../reducers/home';
 import SeeAllPage from '../../components/seeAllPage';
@@ -30,6 +31,13 @@ import {
   exitAlert,
   removeAndroidBackButtonHandler,
 } from '../../services/androidBackButton';
+
+async function onProductView() {
+  await analytics().setUserProperties({
+    account_type: 'gold',
+    account_name: 'Gold Badge',
+  });
+}
 
 export class Trending extends Component {
   constructor(props) {
@@ -46,6 +54,7 @@ export class Trending extends Component {
     const {fetch_trending} = this.props;
     fetch_trending();
     handleAndroidBackButton(this._backButton);
+    onProductView();
   }
 
   componentDidUpdate(prevProps, prevState) {

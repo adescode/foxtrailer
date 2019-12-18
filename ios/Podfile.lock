@@ -304,6 +304,13 @@ PODS:
     - React
     - SDWebImage (~> 5.0)
     - SDWebImageWebPCoder (~> 0.2.3)
+  - RNFBAnalytics (6.2.0):
+    - Firebase/Core (~> 6.13.0)
+    - React
+    - RNFBApp
+  - RNFBApp (6.2.0):
+    - Firebase/Core (~> 6.13.0)
+    - React
   - RNGestureHandler (1.4.1):
     - React
   - RNSnackbar (2.0.3):
@@ -353,6 +360,8 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - rn-fetch-blob (from `../node_modules/rn-fetch-blob`)
   - RNFastImage (from `../node_modules/react-native-fast-image`)
+  - "RNFBAnalytics (from `../node_modules/@react-native-firebase/analytics`)"
+  - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNSnackbar (from `../node_modules/react-native-snackbar`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -436,6 +445,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/rn-fetch-blob"
   RNFastImage:
     :path: "../node_modules/react-native-fast-image"
+  RNFBAnalytics:
+    :path: "../node_modules/@react-native-firebase/analytics"
+  RNFBApp:
+    :path: "../node_modules/@react-native-firebase/app"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNSnackbar:
@@ -488,6 +501,8 @@ SPEC CHECKSUMS:
   ReactCommon: 5848032ed2f274fcb40f6b9ec24067787c42d479
   rn-fetch-blob: f525a73a78df9ed5d35e67ea65e79d53c15255bc
   RNFastImage: 9b0c22643872bb7494c8d87bbbb66cc4c0d9e7a2
+  RNFBAnalytics: 57dc0bfad4e40f68779757653676699072651218
+  RNFBApp: 5b215aacc09105a1761de31b9a0eb2abcce06253
   RNGestureHandler: 4cb47a93019c1a201df2644413a0a1569a51c8aa
   RNSnackbar: 5ce7c6c100fde59068e9135397760d7cee299c2a
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
