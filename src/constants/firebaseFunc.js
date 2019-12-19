@@ -1,4 +1,8 @@
+import { firebase } from '@react-native-firebase/app';
 import analytics from '@react-native-firebase/analytics';
+import messaging from '@react-native-firebase/messaging';
+import Snackbar from 'react-native-snackbar';
+import { AsyncStorage } from 'react-native';
 
 export const trackScreenView = async screen => {
   // Set & override the MainActivity screen name
@@ -13,12 +17,11 @@ export const trackLogin = async link => {
 };
 
 export const trackShare = async params => {
+  console.log('params', { ...params });
+
   // Share event. Apps with social features can log the Share event to identify the most viral content.
   await analytics().logShare({
-    // content_type: 't-shirts',
-    // item_id: '12345',
-    // method: 'twitter.com',
-    params,
+    ...params,
   });
 };
 
@@ -33,7 +36,60 @@ export const trackAppOpen = async () => {
   await analytics().logAppOpen();
 };
 
-export const trackUserId = async () => {
+export const trackUserId = async param => {
   // Gives a user a unique identification.
-  await analytics().setUserId('123456789');
+  await analytics().setUserId(param);
+};
+
+export const checkFcmPermission = async () => {
+  const isAutoInitEnabled = messaging().isAutoInitEnabled;
+  console.log('isAutoInitEnabled', isAutoInitEnabled);
+  messaging()
+    .hasPermission()
+    .then(enabled => {
+      if (enabled) {
+        // user has permissions
+        getFcmToken();
+      } else {
+        // user doesn't have permission
+        requestFcmPermission();
+      }
+    });
+};
+
+export const requestFcmPermission = () => {
+  messaging()
+    .requestPermission()
+    .then(() => {
+      getFcmToken();
+      // User has authorized
+    })
+    .catch(error => {
+      console.log('error', error);
+      Snackbar.show({
+        title: 'Notification permissions rejected',
+        duration: Snackbar.LENGTH_LONG,
+      });
+      // User has rejected permissions
+    });
+};
+
+export const getFcmToken = async () => {
+  const fcmToken = await messaging().getToken();
+
+  if (fcmToken) {
+    console.log('User FCM Token:', fcmToken);
+  } else {
+    console.log('User FCM Token: NONE');
+  }
+};
+
+export const fcmBackgroundMessageHandler = async () => {
+  messaging().setBackgroundMessageHandler(async remoteMessage => {
+    // Update a users messages list using AsyncStorage
+    const currentMessages = await AsyncStorage.getItem('messages');
+    const messageArray = JSON.parse(currentMessages);
+    messageArray.push(remoteMessage.data);
+    await AsyncStorage.setItem('messages', JSON.stringify(messageArray));
+  });
 };
