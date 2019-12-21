@@ -10,6 +10,7 @@ import {
   ImageBackground,
   TouchableOpacity,
   StyleSheet,
+  Share,
 } from 'react-native';
 import {
   Container,
@@ -62,6 +63,19 @@ export class DetailPage extends Component {
 
   toggleFav = () => {
     this.setState({ fav: !this.state.fav });
+  };
+
+  onShare = async () => {
+    try {
+      await Share.share({
+        message:
+          'FoxTrailer https://play.google.com/store/apps/details?id=com.foxtrailer',
+        url: 'https://play.google.com/store/apps/details?id=com.foxtrailer',
+        title: 'FoxTrailer',
+      });
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   _backButton = () => {
@@ -455,13 +469,13 @@ export class DetailPage extends Component {
                   flexDirection: 'row',
                   justifyContent: 'flex-end',
                 }}>
-                <View>
+                {/* <View>
                   <Button onPress={() => this.toggleFav()} transparent>
                     <Icon name={fav ? 'star' : 'star-outline'} />
                   </Button>
-                </View>
+                </View> */}
                 <View>
-                  <Button onPress={() => {}} transparent>
+                  <Button onPress={this.onShare} transparent>
                     <Icon name="share" />
                   </Button>
                 </View>
