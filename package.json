@@ -21,6 +21,7 @@
     "react-native-config": "^0.12.0",
     "react-native-fast-image": "^7.0.2",
     "react-native-gesture-handler": "^1.4.1",
+    "react-native-modal": "^11.5.3",
     "react-native-router-flux": "^4.0.6",
     "react-native-snackbar": "^2.0.3",
     "react-native-splash-screen": "^3.2.0",

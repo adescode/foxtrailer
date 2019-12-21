@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Share,
+  Linking,
 } from 'react-native';
 import {
   Container,
@@ -21,8 +22,11 @@ import {
   Right,
   Body,
   Icon,
+  Card,
+  CardItem,
 } from 'native-base';
 import { connect } from 'react-redux';
+import Modal from 'react-native-modal';
 import { Actions } from 'react-native-router-flux';
 import {
   handleAndroidBackButton,
@@ -41,6 +45,7 @@ export class DetailPage extends Component {
       refreshing: true,
       data: {},
       fav: false,
+      isReportVisible: false,
     };
   }
 
@@ -76,6 +81,17 @@ export class DetailPage extends Component {
     } catch (error) {
       alert(error.message);
     }
+  };
+
+  _onReport = () => {
+    const { data } = this.state;
+    const { title, name } = data;
+    const newTitle = title ? title : name;
+    this.setState({ isReportVisible: false }, () => {
+      Linking.openURL(
+        `mailto:adelaja444@gmail.com?subject=Report movie titled ${newTitle}&body=Hello Adescode,`,
+      );
+    });
   };
 
   _backButton = () => {
@@ -423,7 +439,15 @@ export class DetailPage extends Component {
   };
 
   render() {
-    const { refreshing, data, videos, similar, fav, images } = this.state;
+    const {
+      refreshing,
+      data,
+      videos,
+      similar,
+      fav,
+      images,
+      isReportVisible,
+    } = this.state;
     const {
       poster_path,
       backdrop_path,
@@ -480,7 +504,9 @@ export class DetailPage extends Component {
                   </Button>
                 </View>
                 <View>
-                  <Button onPress={() => {}} transparent>
+                  <Button
+                    onPress={() => this.setState({ isReportVisible: true })}
+                    transparent>
                     <Icon name="more" />
                   </Button>
                 </View>
@@ -657,6 +683,25 @@ export class DetailPage extends Component {
               </View>
             )}
           </Content>
+          <Modal
+            style={{
+              flex: 1,
+              position: 'absolute',
+              top: -15,
+              right: -15,
+              width: 150,
+            }}
+            backdropColor="transparent"
+            animationIn="fadeInRightBig"
+            animationOut="fadeOutRightBig"
+            onBackdropPress={() => this.setState({ isReportVisible: false })}
+            isVisible={this.state.isReportVisible}>
+            <Card>
+              <CardItem button onPress={() => this._onReport()}>
+                <Text>Report</Text>
+              </CardItem>
+            </Card>
+          </Modal>
         </ImageBackground>
       </Container>
     );
