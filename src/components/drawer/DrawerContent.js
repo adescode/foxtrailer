@@ -1,10 +1,15 @@
 import React from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
-import {Content, Header, Left, Body, Right, Title} from 'native-base';
-import {Actions} from 'react-native-router-flux';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { Content, Header, Left, Body, Right, Title } from 'native-base';
+import { Actions } from 'react-native-router-flux';
 import styles from './style';
+import { trackScreenView } from '../../constants/firebaseFunc';
 
 class DrawerContent extends React.Component {
+  componentDidMount() {
+    trackScreenView(Actions.currentScene);
+  }
+
   goToMovies = query_type => {
     Actions.Movie({
       query_type,
@@ -33,7 +38,7 @@ class DrawerContent extends React.Component {
               <View>
                 <Text style={[styles.drawerListTitle]}>Trending</Text>
               </View>
-              <View style={{paddingHorizontal: 10}}>
+              <View style={{ paddingHorizontal: 10 }}>
                 <View>
                   <TouchableOpacity onPress={() => Actions.Trending()}>
                     <Text style={styles.drawerListItem}>All</Text>
@@ -45,7 +50,7 @@ class DrawerContent extends React.Component {
               <View>
                 <Text style={[styles.drawerListTitle]}>Movies</Text>
               </View>
-              <View style={{paddingHorizontal: 10}}>
+              <View style={{ paddingHorizontal: 10 }}>
                 <View>
                   <TouchableOpacity onPress={() => this.goToMovies('popular')}>
                     <Text style={styles.drawerListItem}>Popular</Text>
@@ -74,7 +79,7 @@ class DrawerContent extends React.Component {
               <View>
                 <Text style={[styles.drawerListTitle]}>Tv Shows</Text>
               </View>
-              <View style={{paddingHorizontal: 10}}>
+              <View style={{ paddingHorizontal: 10 }}>
                 <View>
                   <TouchableOpacity onPress={() => this.goToTv('popular')}>
                     <Text style={styles.drawerListItem}>Popular</Text>

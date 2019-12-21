@@ -32,9 +32,11 @@ export class Tv extends Component {
   }
 
   componentDidMount() {
+    const { query_type } = this.props;
+
     this.fetch_Listing();
     handleAndroidBackButton(this._backButton);
-    trackScreenView(Actions.currentScene);
+    trackScreenView(`${Actions.currentScene} ${query_type}`);
   }
 
   componentWillUnmount() {
@@ -133,7 +135,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = { fetch_Listing };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Tv);
+export default connect(mapStateToProps, mapDispatchToProps)(Tv);

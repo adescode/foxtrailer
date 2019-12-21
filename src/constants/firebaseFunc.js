@@ -89,6 +89,8 @@ export const fcmBackgroundMessageHandler = async () => {
     // Update a users messages list using AsyncStorage
     const currentMessages = await AsyncStorage.getItem('messages');
     const messageArray = JSON.parse(currentMessages);
+    console.log('messageArray', messageArray);
+
     messageArray.push(remoteMessage.data);
     await AsyncStorage.setItem('messages', JSON.stringify(messageArray));
   });

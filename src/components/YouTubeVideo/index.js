@@ -1,16 +1,25 @@
 import React from 'react';
-import {StyleSheet, ScrollView, PixelRatio, Dimensions} from 'react-native';
+import { StyleSheet, ScrollView, PixelRatio, Dimensions } from 'react-native';
 import YouTube from 'react-native-youtube';
-import {Container, Header, Left, Button, Icon, Body, Right} from 'native-base';
-import {Actions} from 'react-native-router-flux';
+import {
+  Container,
+  Header,
+  Left,
+  Button,
+  Icon,
+  Body,
+  Right,
+} from 'native-base';
+import { Actions } from 'react-native-router-flux';
 import Colors from '../../constants/Colors';
 import {
   handleAndroidBackButton,
   removeAndroidBackButtonHandler,
 } from '../../services/androidBackButton';
-import {YOUTUBE_API_KEY} from '../../constants/config';
+import { YOUTUBE_API_KEY } from '../../constants/config';
+import { trackScreenView } from '../../constants/firebaseFunc';
 
-const {height, width} = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 export default class YouTubeVideo extends React.Component {
   state = {
@@ -29,6 +38,7 @@ export default class YouTubeVideo extends React.Component {
 
   componentDidMount() {
     handleAndroidBackButton(this._backButton);
+    trackScreenView(Actions.currentScene);
   }
 
   componentWillUnmount() {
@@ -40,7 +50,7 @@ export default class YouTubeVideo extends React.Component {
   };
 
   render() {
-    const {newLink} = this.props;
+    const { newLink } = this.props;
     const {
       containerMounted,
       containerWidth,
@@ -70,7 +80,7 @@ export default class YouTubeVideo extends React.Component {
           contentContainerStyle={styles.scrollView}
           onLayout={({
             nativeEvent: {
-              layout: {width},
+              layout: { width },
             },
           }) => {
             if (!containerMounted) {
@@ -109,9 +119,9 @@ export default class YouTubeVideo extends React.Component {
                 },
                 styles.player,
               ]}
-              onError={e => this.setState({error: e.error})}
-              onReady={e => this.setState({isReady: true})}
-              onChangeState={e => this.setState({status: e.state})}
+              onError={e => this.setState({ error: e.error })}
+              onReady={e => this.setState({ isReady: true })}
+              onChangeState={e => this.setState({ status: e.state })}
               onChangeQuality={e =>
                 this.setState({
                   quality: e.quality,
