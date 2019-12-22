@@ -4,7 +4,7 @@ import { Content, Header, Left, Body, Right, Title } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import styles from './style';
 import { trackScreenView } from '../../constants/firebaseFunc';
-import { onShare } from '../../constants/helpers';
+import { onShare, onRateUs } from '../../constants/helpers';
 
 class DrawerContent extends React.Component {
   componentDidMount() {
@@ -114,7 +114,7 @@ class DrawerContent extends React.Component {
               </View>
               <View style={{ paddingHorizontal: 10 }}>
                 <View>
-                  <TouchableOpacity onPress={() => this.goToTv('airing_today')}>
+                  <TouchableOpacity onPress={() => onRateUs()}>
                     <Text style={styles.drawerListItem}>Rate us</Text>
                   </TouchableOpacity>
                 </View>

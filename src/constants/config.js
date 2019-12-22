@@ -14,6 +14,11 @@ export const TMDB_API_KEY = Config.TMDB_API_KEY;
 export const YOUTUBE_URL = Config.YOUTUBE_URL;
 export const YOUTUBE_API_KEY = Config.YOUTUBE_API_KEY;
 
+export const GITHUB = 'https://github.com/adescode';
+export const TWITTER = 'https://twitter.com/adescode';
+export const LINKEDIN = 'https://www.linkedin.com/in/adescode/';
+export const PORTFOLIO = 'https://portfolio.adescode.com/';
+
 export const GOOGLE_PACKAGE_NAME = 'com.foxtrailer';
 export const APPLE_STORE_ID = 'com.foxtrailer';
 export const MARKET_LINK =

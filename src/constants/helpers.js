@@ -29,27 +29,21 @@ export const showAlert = (title, message, action) => {
   );
 };
 
+export const onLinkingUrl = url => {
+  Linking.openURL(url).catch(err => {
+    alert('Link not available');
+  });
+};
+
 export const onRateUs = () => {
   const title = 'Rate us';
   const message =
     'Would you like to share your review with us? This will help and motivate us a lot.';
   if (Platform.OS !== 'ios') {
     //To open the Google Play Store
-    showAlert(
-      title,
-      message,
-      Linking.openURL(STORE_LINK).catch(err => {
-        console.log('Please check for the Google Play Store', err);
-      }),
-    );
+    showAlert(title, message, onLinkingUrl(STORE_LINK));
   } else {
     //To open the Apple App Store
-    showAlert(
-      title,
-      message,
-      Linking.openURL(STORE_LINK).catch(err =>
-        alert('Please check for the App Store'),
-      ),
-    );
+    showAlert(title, message, onLinkingUrl(STORE_LINK));
   }
 };
