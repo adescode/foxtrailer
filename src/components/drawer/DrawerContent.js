@@ -1,9 +1,10 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, Linking } from 'react-native';
 import { Content, Header, Left, Body, Right, Title } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import styles from './style';
 import { trackScreenView } from '../../constants/firebaseFunc';
+import { onShare } from '../../constants/helpers';
 
 class DrawerContent extends React.Component {
   componentDidMount() {
@@ -106,11 +107,40 @@ class DrawerContent extends React.Component {
             <View style={styles.drawerBreakline} />
 
             <View style={[styles.drawerListContainer]}>
-              <TouchableOpacity onPress={() => Actions.About()}>
-                <Text style={[styles.drawerListTitle, styles.drawerListOthers]}>
-                  About
+              <View>
+                <Text style={[styles.drawerListTitle, { marginTop: 10 }]}>
+                  Info
                 </Text>
-              </TouchableOpacity>
+              </View>
+              <View style={{ paddingHorizontal: 10 }}>
+                <View>
+                  <TouchableOpacity onPress={() => this.goToTv('airing_today')}>
+                    <Text style={styles.drawerListItem}>Rate us</Text>
+                  </TouchableOpacity>
+                </View>
+                <View>
+                  <TouchableOpacity onPress={() => onShare()}>
+                    <Text style={styles.drawerListItem}>Share</Text>
+                  </TouchableOpacity>
+                </View>
+                <View>
+                  <TouchableOpacity onPress={() => Actions.Settings()}>
+                    <Text style={styles.drawerListItem}>More...</Text>
+                  </TouchableOpacity>
+                </View>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                  }}>
+                  <View>
+                    <Text style={styles.drawerListItem}>Version</Text>
+                  </View>
+                  <View>
+                    <Text style={styles.drawerListItem}>1.0.1</Text>
+                  </View>
+                </View>
+              </View>
             </View>
           </View>
         </Content>

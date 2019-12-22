@@ -1,5 +1,5 @@
 import React from 'react';
-import {Scene, Router, Stack, Drawer} from 'react-native-router-flux';
+import { Scene, Router, Stack, Drawer } from 'react-native-router-flux';
 
 import Trending from './screens/Trending';
 
@@ -11,9 +11,12 @@ import Tv from './screens/Tv';
 import DetailPage from './screens/DetailPage';
 
 import YouTubeVideo from './components/YouTubeVideo';
-import About from './screens/About';
 import WelcomeScreen from './screens/WelcomeScreen';
 import GalleryComponent from './components/Gallery';
+import FAQ from './screens/FAQ';
+import Settings from './screens/Settings';
+import AboutDeveloper from './screens/AboutDeveloper';
+import AboutApp from './screens/AboutApp';
 
 const Scenes = () => (
   <Router>
@@ -42,7 +45,12 @@ const Scenes = () => (
             hideNavBar
           />
 
-          <Scene key="About" component={About} hideNavBar />
+          <Scene key="Settings" component={Settings} hideNavBar />
+
+          <Scene key="FAQ" component={FAQ} hideNavBar />
+
+          <Scene key="AboutDeveloper" component={AboutDeveloper} hideNavBar />
+          <Scene key="AboutApp" component={AboutApp} hideNavBar />
         </Scene>
       </Drawer>
     </Stack>

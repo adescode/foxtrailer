@@ -17,7 +17,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import { trackScreenView } from '../../constants/firebaseFunc';
 
-class About extends Component {
+class AboutDeveloper extends Component {
   componentDidMount() {
     trackScreenView(Actions.currentScene);
   }
@@ -80,4 +80,4 @@ const mapDispatchToProps = {};
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(About);
+)(AboutDeveloper);

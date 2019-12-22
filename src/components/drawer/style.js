@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import Colors from '../../constants/Colors';
 
 const styles = StyleSheet.create({
@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.secondary,
     borderWidth: 2,
   },
-  drawerContainer: {flex: 1, flexDirection: 'column', paddingTop: 10},
+  drawerContainer: { flex: 1, flexDirection: 'column', paddingTop: 10 },
   drawerListContainer: {
     flex: 1,
     flexDirection: 'column',
