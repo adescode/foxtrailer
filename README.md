@@ -6,9 +6,9 @@ Discover Movies and TV shows
 ![FoxTrailer-screenshots](https://firebasestorage.googleapis.com/v0/b/lovemate-5fd27.appspot.com/o/Screenshot_20191004-161929.png?alt=media&token=a5a725bc-1f55-40b9-8e25-376d5272ab10)
 
 
-### Download Debug APK file
+### Download Foxtrailer
 
-- [Download Debug-APK from Google Drive - v0.0.1](http://bit.ly/foxtrailer_)
+- [Download foxtrailer from play store - v0.0.1](https://play.google.com/store/apps/details?id=com.foxtrailer)
 
 ### What's included
 
@@ -69,28 +69,6 @@ $ react-native run-ios
 React-native >= 0.60 now auto link modules, but some modules require
 some manual additions for it to function properly, Modules like
 
-#### For ios
-`react-native-config` 
-
-Currently i'm not using this module on ios just copy the code you added to the .env file to
-src/constants/config.js 
-
-`react-native-fast-image`
-
-You might need to run ``react-native link react-native-fast-image`` for it to work, then navigate to 
-ios,``cd ios`` run ``pod install``
-
-#### For Android
-`react-native-config` 
-`react-native-vector-icons` 
-
-Go to your android folder locate app/build.gradle, paste these lines codes and the last line
-
-```
-apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
-apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
-```
-
 ### General
 Default image might not work on android debug version, but it works on ios.
 
@@ -102,10 +80,10 @@ Default image might not work on android debug version, but it works on ios.
 - [x] Add download button and function to image gallery
 - [x] Publish to Google playstore
 - [x] Implement Firebase Analytics
-- [ ] Implement functional share button 
+- [x] Implement functional share button 
 - [ ] Implement functional favorite movie details
 - [ ] Remove inline style
 - [ ] Allow Android back button on some other screens
 - [ ] Create separate element for some functions in details page
 - [ ] Clean up the entire code
-- [ ] Download on ios not found/ place in a specific location
+- [ ] Image download on ios not working.
