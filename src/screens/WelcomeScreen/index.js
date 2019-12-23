@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Platform, Linking } from 'react-native';
 import { connect } from 'react-redux';
+import { Container } from 'native-base';
 
 class WelcomeScreen extends Component {
   componentDidMount() {
@@ -39,11 +40,7 @@ class WelcomeScreen extends Component {
   };
 
   render() {
-    return (
-      <View>
-        <Text> Foxtrailer </Text>
-      </View>
-    );
+    return <Container />;
   }
 }
 

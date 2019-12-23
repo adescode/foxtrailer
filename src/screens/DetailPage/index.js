@@ -662,9 +662,11 @@ export class DetailPage extends Component {
 
                       <TouchableOpacity
                         onPress={() =>
-                          Actions.YouTubeVideo({
-                            newLink: videos[0].key,
-                          })
+                          videos.length > 0
+                            ? Actions.YouTubeVideo({
+                                newLink: videos[0].key,
+                              })
+                            : {}
                         }>
                         <View
                           style={{
@@ -697,8 +699,8 @@ export class DetailPage extends Component {
                 {this.get_overview(overview)}
                 {this.get_facts(data)}
                 {/* {mediaType === 'movie' && this.get_facts(data)} */}
-                {this.videoLists(videos)}
-                {this.get_similar(similar)}
+                {videos.length > 0 && this.videoLists(videos)}
+                {similar.length > 0 && this.get_similar(similar)}
               </View>
             )}
           </Content>
