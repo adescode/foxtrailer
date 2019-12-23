@@ -51,6 +51,7 @@ export class DetailPage extends Component {
 
   componentDidMount() {
     const { data, fetch_details, mediaType } = this.props;
+    console.log('detail props', this.props);
 
     const param = {
       media_type: mediaType ? mediaType : data.media_type,
@@ -70,12 +71,12 @@ export class DetailPage extends Component {
     this.setState({ fav: !this.state.fav });
   };
 
-  onShare = async () => {
+  onShare = async (type, id, title) => {
+    const url = `https://foxtrailer.adescode.com/details/${type}/${id}`;
     try {
       await Share.share({
-        message:
-          'FoxTrailer https://play.google.com/store/apps/details?id=com.foxtrailer',
-        url: 'https://play.google.com/store/apps/details?id=com.foxtrailer',
+        message: `Watch ${title} trailer on FoxTrailer ${url}`,
+        url,
         title: 'FoxTrailer',
       });
     } catch (error) {
@@ -439,6 +440,7 @@ export class DetailPage extends Component {
   };
 
   render() {
+    const { mediaType } = this.props;
     const {
       refreshing,
       data,
@@ -499,7 +501,9 @@ export class DetailPage extends Component {
                   </Button>
                 </View> */}
                 <View>
-                  <Button onPress={this.onShare} transparent>
+                  <Button
+                    onPress={() => this.onShare(mediaType, data.id, newTitle)}
+                    transparent>
                     <Icon name="share" />
                   </Button>
                 </View>
@@ -707,16 +711,6 @@ export class DetailPage extends Component {
     );
   }
 }
-
-var styles = StyleSheet.create({
-  backgroundVideo: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-  },
-});
 
 const mapStateToProps = state => ({
   details: state.home.details,

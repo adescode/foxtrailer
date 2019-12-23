@@ -21,14 +21,13 @@ import AboutApp from './screens/AboutApp';
 const Scenes = () => (
   <Router>
     <Stack key="root">
+      <Scene key="WelcomeScreen" component={WelcomeScreen} hideNavBar />
       <Drawer
         hideNavBar
         key="drawer"
         contentComponent={DrawerContent}
         drawerWidth={300}>
         <Scene key="Main" hideNavBar>
-          <Scene key="WelcomeScreen" component={WelcomeScreen} hideNavBar />
-
           <Scene key="Trending" component={Trending} hideNavBar initial />
 
           <Scene key="Movie" component={Movie} hideNavBar />
