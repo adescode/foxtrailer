@@ -17,8 +17,6 @@ export const trackLogin = async link => {
 };
 
 export const trackShare = async params => {
-  console.log('params', { ...params });
-
   // Share event. Apps with social features can log the Share event to identify the most viral content.
   await analytics().logShare({
     ...params,

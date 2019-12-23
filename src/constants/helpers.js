@@ -1,6 +1,7 @@
 import { Share, Platform, Linking, Alert } from 'react-native';
 import { STORE_LINK } from './config';
 import Snackbar from 'react-native-snackbar';
+import { trackShare } from './firebaseFunc';
 
 export const onShare = async () => {
   try {
@@ -9,6 +10,7 @@ export const onShare = async () => {
       url: STORE_LINK,
       title: 'FoxTrailer',
     });
+    trackShare();
   } catch (error) {
     Snackbar.show({
       title: `${error.message}`,
