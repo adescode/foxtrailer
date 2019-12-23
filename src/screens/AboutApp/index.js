@@ -60,7 +60,7 @@ class AboutApp extends Component {
               </View>
               <View style={{ padding: 10 }}>
                 <Text style={styles.aboutText}>
-                  Foxtrailer, your movie trailer application. The easiest and
+                  Foxtrailer is your movie trailer application. The easiest and
                   fastest way to find and discover movies and tv shows on your
                   device also get updates on your favorites movie or tv show.
                 </Text>
