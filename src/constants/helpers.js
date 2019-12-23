@@ -1,5 +1,6 @@
 import { Share, Platform, Linking, Alert } from 'react-native';
 import { STORE_LINK } from './config';
+import Snackbar from 'react-native-snackbar';
 
 export const onShare = async () => {
   try {
@@ -9,7 +10,10 @@ export const onShare = async () => {
       title: 'FoxTrailer',
     });
   } catch (error) {
-    alert(error.message);
+    Snackbar.show({
+      title: `${error.message}`,
+      duration: Snackbar.LENGTH_LONG,
+    });
   }
 };
 
@@ -31,7 +35,10 @@ export const showAlert = (title, message, action) => {
 
 export const onLinkingUrl = url => {
   Linking.openURL(url).catch(err => {
-    alert('Link not available');
+    Snackbar.show({
+      title: `${err.message}`,
+      duration: Snackbar.LENGTH_LONG,
+    });
   });
 };
 

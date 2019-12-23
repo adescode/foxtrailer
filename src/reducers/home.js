@@ -1,9 +1,10 @@
 import update from 'immutability-helper';
 import axios from 'axios';
 import actionConstants from './actionConstants';
-import {TMDB_URL, TMDB_API_KEY} from '../constants/config';
+import { TMDB_URL, TMDB_API_KEY } from '../constants/config';
+import Snackbar from 'react-native-snackbar';
 
-const {GET_TRENDING, GET_LISTING, GET_DETAILS} = actionConstants;
+const { GET_TRENDING, GET_LISTING, GET_DETAILS, GET_ERROR } = actionConstants;
 
 const get_trending = media_type =>
   axios.get(`${TMDB_URL}/trending/${media_type}/day?api_key=${TMDB_API_KEY}`);
@@ -42,13 +43,19 @@ export function fetch_trending() {
             },
           });
         }),
-        err => console.log('err', err),
+        err => {
+          Snackbar.show({
+            title: `${err.message}`,
+            duration: Snackbar.LENGTH_LONG,
+          });
+          console.log('err', err);
+        },
       );
   };
 }
 
 export function fetch_details(param) {
-  const {media_type, movie_id} = param;
+  const { media_type, movie_id } = param;
   const get_all =
     media_type === 'person'
       ? [get_details(media_type, movie_id), get_images(media_type, movie_id)]
@@ -66,7 +73,7 @@ export function fetch_details(param) {
           type: GET_DETAILS,
           payload:
             media_type === 'person'
-              ? {details: details.data, images: images.data}
+              ? { details: details.data, images: images.data }
               : {
                   details: details.data,
                   images: images.data,
@@ -75,13 +82,22 @@ export function fetch_details(param) {
                 },
         });
       }),
-      err => console.log('err', err),
+      err => {
+        Snackbar.show({
+          title:
+            err.message === 'Network Error'
+              ? 'Network Error'
+              : 'Request failed. Bad Link',
+          duration: Snackbar.LENGTH_LONG,
+        });
+        console.log('err', err);
+      },
     );
   };
 }
 
 export function fetch_Listing(param) {
-  const {media_type, query_type, page} = param;
+  const { media_type, query_type, page } = param;
 
   return async dispatch => {
     await axios
@@ -95,7 +111,13 @@ export function fetch_Listing(param) {
             payload: res.data,
           });
         },
-        err => console.log('err', err),
+        err => {
+          Snackbar.show({
+            title: `${err.message}`,
+            duration: Snackbar.LENGTH_LONG,
+          });
+          console.log('err', err);
+        },
       );
   };
 }
@@ -124,16 +146,26 @@ function handleDetails(state, action) {
   });
 }
 
+// function handleError(state, action) {
+//   return update(state, {
+//     error: {
+//       $set: action.payload,
+//     },
+//   });
+// }
+
 const ACTION_HANDLERS = {
   GET_TRENDING: handleTrending,
   GET_LISTING: handleListing,
   GET_DETAILS: handleDetails,
+  // GET_ERROR: handleError,
 };
 
 const initialState = {
   trending: [],
   listing: [],
   details: [],
+  // error: '',
 };
 
 export default function HomeReducer(state = initialState, action) {

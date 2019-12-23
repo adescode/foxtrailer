@@ -35,6 +35,7 @@ import {
 import Colors from '../../constants/Colors';
 import { fetch_details } from '../../reducers/home';
 import { trackScreenView } from '../../constants/firebaseFunc';
+import Snackbar from 'react-native-snackbar';
 const { height, width } = Dimensions.get('window');
 
 export class DetailPage extends Component {
@@ -51,7 +52,6 @@ export class DetailPage extends Component {
 
   componentDidMount() {
     const { data, fetch_details, mediaType } = this.props;
-    console.log('detail props', this.props);
 
     const param = {
       media_type: mediaType ? mediaType : data.media_type,
@@ -80,7 +80,10 @@ export class DetailPage extends Component {
         title: 'FoxTrailer',
       });
     } catch (error) {
-      alert(error.message);
+      Snackbar.show({
+        title: `${error.message}`,
+        duration: Snackbar.LENGTH_LONG,
+      });
     }
   };
 
@@ -121,6 +124,18 @@ export class DetailPage extends Component {
         refreshing: false,
       });
     }
+
+    // if (prevProps.error !== this.props.error) {
+    //   console.log('this.props.error;', this.props.error);
+
+    //   const err = this.props.error;
+    //   this.setState({ refreshing: false }, () => {
+    //     Snackbar.show({
+    //       title: `${err.message}`,
+    //       duration: Snackbar.LENGTH_LONG,
+    //     });
+    //   });
+    // }
   }
 
   _onRefresh = () => {
@@ -714,6 +729,7 @@ export class DetailPage extends Component {
 
 const mapStateToProps = state => ({
   details: state.home.details,
+  // error: state.home.error,
 });
 
 const mapDispatchToProps = { fetch_details };

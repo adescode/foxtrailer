@@ -1,10 +1,14 @@
-import {applyMiddleware, compose, createStore as createReduxStore} from 'redux';
+import {
+  applyMiddleware,
+  compose,
+  createStore as createReduxStore,
+} from 'redux';
 import thunk from 'redux-thunk';
 import makeRootReducer from './reducers';
-import {createLogger} from 'redux-logger';
+import { createLogger } from 'redux-logger';
 
 const createStore = (initialState = {}) => {
-  const log = createLogger({diff: true, collapsed: true});
+  const log = createLogger({ diff: true, collapsed: true });
   const middleware = [thunk, log];
   const enhancers = [];
   let composeEnhancers = compose;

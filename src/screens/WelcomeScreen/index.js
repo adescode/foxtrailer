@@ -7,11 +7,8 @@ class WelcomeScreen extends Component {
   componentDidMount() {
     if (Platform.OS === 'android') {
       Linking.getInitialURL().then(url => {
-        // this.navigate(url);
-        alert(url);
         if (url !== null && url !== undefined && url !== '') {
           console.log('logging url', url);
-
           this.navigate(url);
         } else {
           Actions.jump('Trending');
