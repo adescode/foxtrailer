@@ -9,10 +9,7 @@
 import React from 'react';
 import createStore from './src/store/createStore';
 import Setup from './src/Setup';
-import {
-  checkFcmPermission,
-  androidActionCustomButton,
-} from './src/constants/firebaseFunc';
+import { checkFcmPermission } from './src/constants/firebaseFunc';
 
 const App = () => {
   checkFcmPermission();

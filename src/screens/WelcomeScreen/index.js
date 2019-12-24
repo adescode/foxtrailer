@@ -3,6 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import { View, Text, Platform, Linking } from 'react-native';
 import { connect } from 'react-redux';
 import { Container } from 'native-base';
+import { fcmBackgroundMessageHandler } from '../../constants/firebaseFunc';
 
 class WelcomeScreen extends Component {
   componentDidMount() {
@@ -18,6 +19,7 @@ class WelcomeScreen extends Component {
     } else {
       Linking.addEventListener('url', this.handleOpenURL);
     }
+    fcmBackgroundMessageHandler();
   }
 
   componentWillUnmount() {

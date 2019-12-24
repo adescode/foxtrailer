@@ -4,6 +4,10 @@ import messaging from '@react-native-firebase/messaging';
 import Snackbar from 'react-native-snackbar';
 import { AsyncStorage } from 'react-native';
 
+/**
+ *  Beginning of analytics tracking
+ */
+
 export const trackScreenView = async screen => {
   // Set & override the MainActivity screen name
   await analytics().setCurrentScreen(screen, screen);
@@ -38,6 +42,12 @@ export const trackUserId = async param => {
   // Gives a user a unique identification.
   await analytics().setUserId(param);
 };
+
+//End of tracking analytics
+
+/**
+ * Beginning of Firebase messaging
+ */
 
 export const checkFcmPermission = async () => {
   const isAutoInitEnabled = messaging().isAutoInitEnabled;
