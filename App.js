@@ -6,15 +6,31 @@
  * @flow
  */
 
-import React from 'react';
+import React, { Component } from 'react';
+import codePush from 'react-native-code-push';
 import createStore from './src/store/createStore';
 import Setup from './src/Setup';
 import { checkFcmPermission } from './src/constants/firebaseFunc';
 
-const App = () => {
-  checkFcmPermission();
-  const initialState = window.___INTITIAL_STATE__;
-  const store = createStore(initialState);
-  return <Setup store={store} />;
+class App extends Component {
+  componentDidMount() {
+    checkFcmPermission();
+    codePush.sync({
+      updateDialog: true,
+      installMode: codePush.InstallMode.IMMEDIATE,
+    });
+  }
+
+  render() {
+    const initialState = window.___INTITIAL_STATE__;
+    const store = createStore(initialState);
+    return <Setup store={store} />;
+  }
+}
+
+let codePushOption = {
+  checkFrequency: codePush.CheckFrequency.ON_APP_START,
+  installMode: codePush.InstallMode.IMMEDIATE,
 };
-export default App;
+
+export default App = codePush(codePushOption)(App);

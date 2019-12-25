@@ -46,6 +46,7 @@ target 'foxtrailer' do
 
   pod 'Firebase/Analytics'
 
+
   target 'foxtrailerTests' do
     inherit! :search_paths
     # Pods for testing

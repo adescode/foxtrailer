@@ -5,6 +5,7 @@ import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.dylanvann.fastimage.FastImageViewPackage;
+import com.microsoft.codepush.react.CodePush;
 import com.azendoo.reactnativesnackbar.SnackbarPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -19,6 +20,11 @@ public class MainApplication extends Application implements ReactApplication {
         @Override
         public boolean getUseDeveloperSupport() {
           return BuildConfig.DEBUG;
+        }
+
+         @Override
+        protected String getJSBundleFile() {
+            return CodePush.getJSBundleFile();
         }
 
         @Override

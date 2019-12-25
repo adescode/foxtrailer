@@ -1,10 +1,11 @@
 {
   "name": "foxtrailer",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios --simulator='iPhone 11'",
+    "release-android": "cd android && ./gradlew bundleRelease",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
@@ -14,10 +15,13 @@
     "@react-native-firebase/app": "^6.2.0",
     "@react-native-firebase/messaging": "^6.2.0",
     "axios": "^0.19.0",
+    "code-push-cli": "^2.1.9",
+    "global": "^4.4.0",
     "immutability-helper": "^3.0.1",
     "native-base": "^2.13.8",
     "react": "16.9.0",
     "react-native": "0.61.2",
+    "react-native-code-push": "^6.0.0",
     "react-native-config": "^0.12.0",
     "react-native-fast-image": "^7.0.2",
     "react-native-gesture-handler": "^1.4.1",

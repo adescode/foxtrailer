@@ -161,6 +161,7 @@ android {
             keyPassword 'android'
         }
     }
+    }
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
@@ -191,6 +192,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-code-push')
     implementation project(':react-native-fast-image')
     implementation project(':react-native-snackbar')
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -214,7 +216,7 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 apply plugin: 'com.google.gms.google-services'
-}
