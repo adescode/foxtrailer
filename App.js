@@ -16,7 +16,6 @@ class App extends Component {
   componentDidMount() {
     checkFcmPermission();
     codePush.sync({
-      updateDialog: true,
       installMode: codePush.InstallMode.IMMEDIATE,
     });
   }

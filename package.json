@@ -6,6 +6,8 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios --simulator='iPhone 11'",
     "release-android": "cd android && ./gradlew bundleRelease",
+    "clean-android": "cd android && ./gradlew clean",
+    "code-push": "code-push release-react foxtrailer android -d Production",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
