@@ -8,7 +8,7 @@ Discover Movies and TV shows
 
 ### Download Foxtrailer
 
-- [Download foxtrailer from play store - v0.0.1](https://play.google.com/store/apps/details?id=com.foxtrailer)
+- [Download foxtrailer from play store - v1.0.7](https://play.google.com/store/apps/details?id=com.foxtrailer)
 
 ### What's included
 
@@ -19,6 +19,8 @@ Discover Movies and TV shows
 |                          [Redux](https://nodejs.org/)                          | Predictable state container for JavaScript apps.     |
 |             [Redux Thunk](https://github.com/gaearon/redux-thunk)              | Thunk middleware for Redux                           |
 |                          [ESLint](http://eslint.org/)                          | The pluggable linting utility for JavaScript and JSX |
+|                          [Firebase](https://firebase.google.com/docs/?authuser=0) | Google Analytics and Google Cloud Messaging       |
+|                          [CodePush](https://github.com/microsoft/react-native-code-push) | Enables developers to deploy mobile app updates directly to their users' devices.      |
 
 ### Requirements
 
@@ -74,16 +76,33 @@ Default image might not work on android debug version, but it works on ios.
 
 ## TODO
 
-- [x] Add splash screen and Icon(- [x] Android, - [ ] iOS)
-- [x] Add Image gallery
-- [x] Implement fast image loader(Implemented still not fast enough)
-- [x] Add download button and function to image gallery
-- [x] Publish to Google playstore
-- [x] Implement Firebase Analytics
-- [x] Implement functional share button 
-- [ ] Implement functional favorite movie details
-- [ ] Remove inline style
-- [ ] Allow Android back button on some other screens
-- [ ] Create separate element for some functions in details page
-- [ ] Clean up the entire code
+- [x] Add splash screen and Icon to Android.
+- [x] Add Image gallery.
+- [x] Implement fast image loader(Implemented still not fast enough).
+- [x] Add download button and function to image gallery.
+- [x] Publish to Google playstore.
+- [x] Implement Firebase Analytics.
+- [x] Implement Firebase messaging(push notification).
+- [x] Implement functional share button.
+- [x] Implement deep linking.
+- [x] Add code push.
+- [ ] Implement functional favorite movie details.
+- [ ] Add splash screen and Icon to iOS.
+- [ ] Remove inline style.
+- [ ] Allow Android back button on some other screens.
+- [ ] Create separate element for some functions in details page.
+- [ ] Clean up the entire code.
 - [ ] Image download on ios not working.
+
+## ISSUES
+- Proguard app shrinking giving networking error after build. App size can still be less than 10mb if code is well minified.
+- Higher increase in change of version code on play store.
+
+## License
+
+Copyright (c) 2019-present Adelaja Ibrahim. All rights reserved.
+
+**The code, design and articles in this repository are intellectual property of
+the person whose name is mentioned above (unless otherwise stated) and as such
+CANNOT be copied, modified, sublicensed or redistributed without permission from
+the author.**
