@@ -100,7 +100,7 @@ export class DetailPage extends Component {
 
   _backButton = () => {
     if (Actions.currentScene === 'DetailPage') {
-      Actions.popTo(`${this.props.from}`);
+      Actions.reset(`${this.props.from}`);
     } else {
       Actions.pop();
     }
