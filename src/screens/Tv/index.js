@@ -70,7 +70,7 @@ export class Tv extends Component {
     const { fetch_Listing, query_type } = this.props;
     const param = {
       media_type: 'tv',
-      query_type,
+      query_type: query_type ? query_type : 'popular',
       page: 1,
     };
     fetch_Listing(param);

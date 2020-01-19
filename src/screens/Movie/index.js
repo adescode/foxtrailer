@@ -71,7 +71,7 @@ export class Movie extends Component {
     const { fetch_Listing, query_type } = this.props;
     const param = {
       media_type: 'movie',
-      query_type,
+      query_type: query_type ? query_type : 'now_playing',
       page: 1,
     };
     fetch_Listing(param);

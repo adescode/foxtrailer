@@ -19,7 +19,7 @@ class WelcomeScreen extends Component {
     } else {
       Linking.addEventListener('url', this.handleOpenURL);
     }
-    fcmBackgroundMessageHandler();
+    // fcmBackgroundMessageHandler();
   }
 
   componentWillUnmount() {
