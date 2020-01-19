@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Platform, Linking } from 'react-native';
+import { View, Text, Platform, Linking, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Container } from 'native-base';
 import { fcmBackgroundMessageHandler } from '../../constants/firebaseFunc';
@@ -42,7 +42,23 @@ class WelcomeScreen extends Component {
   };
 
   render() {
-    return <Container />;
+    return (
+      <Container style={{ justifyContent: 'center' }}>
+        <View>
+          <TouchableOpacity onPress={() => Actions.jump('Trending')}>
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: '600',
+                color: '#ffffff',
+                textAlign: 'center',
+              }}>
+              RELOAD
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </Container>
+    );
   }
 }
 
