@@ -32,4 +32,5 @@ let codePushOption = {
   installMode: codePush.InstallMode.IMMEDIATE,
 };
 
-export default App = codePush(codePushOption)(App);
+// export default App = codePush(codePushOption)(App);
+export default App;
