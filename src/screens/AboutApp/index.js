@@ -91,7 +91,7 @@ class AboutApp extends Component {
                     onPress={() =>
                       onLinkingUrl('https://github.com/adescode/foxtrailer')
                     }>
-                    my Github repostory
+                    my Github repository
                   </Text>{' '}
                   and clone it. Anyone can clone and also add to the project.
                   Cloned project can only be use for development purpose only.
