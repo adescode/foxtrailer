@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -8,15 +8,15 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import {Actions} from 'react-native-router-flux';
-const {height, width} = Dimensions.get('window');
+import { Actions } from 'react-native-router-flux';
+const { height, width } = Dimensions.get('window');
 
 // class SeeAllPage extends Component {
-const SeeAllList = ({trend, mediaType}) => {
+const SeeAllList = ({ trend, mediaType }) => {
   return (
     <FlatList
       data={trend}
-      renderItem={({item}) => {
+      renderItem={({ item }) => {
         return <SeeAllCard data={item} mediaType={mediaType} />;
       }}
       numColumns={2}
@@ -26,8 +26,8 @@ const SeeAllList = ({trend, mediaType}) => {
   );
 };
 
-const SeeAllCard = ({data, mediaType}) => {
-  const {poster_path, title, id, name, profile_path} = data;
+const SeeAllCard = ({ data, mediaType }) => {
+  const { poster_path, title, id, name, profile_path } = data;
   const newTitle = title ? title : name;
   const uri = poster_path ? poster_path : profile_path;
   return (
@@ -38,7 +38,7 @@ const SeeAllCard = ({data, mediaType}) => {
         borderWidth: 1,
       }}
       onPress={() =>
-        Actions.DetailPage({data, from: Actions.currentScene, mediaType})
+        Actions.DetailPage({ data, from: Actions.currentScene, mediaType })
       }
       useForeground={true}>
       <View>
@@ -65,14 +65,14 @@ const SeeAllCard = ({data, mediaType}) => {
             padding: 10,
             backgroundColor: '#00060880',
           }}>
-          <Text style={{color: '#FFFFFF'}}>{newTitle}</Text>
+          <Text style={{ color: '#FFFFFF' }}>{newTitle}</Text>
         </View>
       </View>
     </TouchableOpacity>
   );
 };
 
-const SeeAllPage = ({mediaData, mediaType}) => {
+const SeeAllPage = ({ mediaData, mediaType }) => {
   return (
     <View
       style={{

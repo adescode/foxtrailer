@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import HomeReducer from '../reducers/home';
 
 export const makeRootReducer = () => {
