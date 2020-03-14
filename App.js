@@ -21,7 +21,7 @@ class App extends Component {
   }
 
   render() {
-    const initialState = window.___INTITIAL_STATE__;
+    const initialState = window.__INITIAL_STATE__;
     const store = createStore(initialState);
     return <Setup store={store} />;
   }
