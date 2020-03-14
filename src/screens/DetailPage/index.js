@@ -99,11 +99,12 @@ export class DetailPage extends Component {
   };
 
   _backButton = () => {
-    if (Actions.currentScene === 'DetailPage') {
-      Actions.reset(`${this.props.from}`);
-    } else {
-      Actions.pop();
-    }
+    Actions.pop();
+    // if (Actions.currentScene === 'DetailPage') {
+    //   Actions.reset(`${this.props.from}`);
+    // } else {
+    //   Actions.pop();
+    // }
   };
 
   componentDidUpdate(prevProps, prevState) {

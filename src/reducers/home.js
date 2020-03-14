@@ -3,6 +3,7 @@ import axios from 'axios';
 import actionConstants from './actionConstants';
 import { TMDB_URL, TMDB_API_KEY } from '../constants/config';
 import Snackbar from 'react-native-snackbar';
+import { Platform } from 'react-native';
 
 const { GET_TRENDING, GET_LISTING, GET_DETAILS, GET_ERROR } = actionConstants;
 
@@ -34,6 +35,8 @@ export function fetch_trending() {
       .all([get_trending('movie'), get_trending('tv'), get_trending('person')])
       .then(
         axios.spread((movie, tv, person) => {
+          console.log('fetch_trending..', Platform.OS);
+
           dispatch({
             type: GET_TRENDING,
             payload: {

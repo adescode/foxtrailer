@@ -72,8 +72,10 @@
 	<string>Zocial.ttf</string>
 	</array>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-<string>FoxTrailer would like to save photos from the app to your gallery</string>
-<key>NSPhotoLibraryUsageDescription</key>
-<string>Foxtrailer would like to access your photo gallery for uploading images to the app</string>
+	<string>FoxTrailer would like to save photos from the app to your gallery</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Foxtrailer would like to access your photo gallery for uploading images to the app</string>
+	<key>CodePushDeploymentKey</key>
+    <string>2GlCK18-Jy8bK5YfQBTe2Rlth_WV2_fYTc7L_</string>
 </dict>
 </plist>

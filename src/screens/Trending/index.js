@@ -164,7 +164,7 @@ export class Trending extends Component {
           borderWidth: 1,
         }}
         onPress={() =>
-          Actions.DetailPage({
+          Actions.push('DetailPage', {
             data,
             from: Actions.currentScene,
             mediaType,
