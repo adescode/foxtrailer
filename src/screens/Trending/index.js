@@ -7,6 +7,7 @@ import {
   FlatList,
   RefreshControl,
   TouchableOpacity,
+  InteractionManager,
 } from 'react-native';
 import {
   Container,
@@ -31,6 +32,10 @@ import {
   removeAndroidBackButtonHandler,
 } from '../../services/androidBackButton';
 import { trackScreenView } from '../../constants/firebaseFunc';
+import {
+  subscribeDeepLinking,
+  unsubscribeDeepLinking,
+} from '../../services/deepLinking';
 
 export class Trending extends Component {
   constructor(props) {
@@ -47,10 +52,15 @@ export class Trending extends Component {
     const { fetch_trending } = this.props;
     fetch_trending();
     handleAndroidBackButton(this._backButton);
+    subscribeDeepLinking();
     trackScreenView(Actions.currentScene);
+    // console.log('trending', this.props);
   }
 
   componentDidUpdate(prevProps, prevState) {
+    if (prevProps !== this.props) {
+      // console.log('trending', this.props);
+    }
     if (prevProps.trending !== this.props.trending) {
       const { movie, tv, person } = this.props.trending;
       this.setState(
@@ -68,6 +78,7 @@ export class Trending extends Component {
 
   componentWillUnmount() {
     removeAndroidBackButtonHandler();
+    unsubscribeDeepLinking();
   }
 
   _backButton = () => {
@@ -168,6 +179,7 @@ export class Trending extends Component {
             data,
             from: Actions.currentScene,
             mediaType,
+            close: true,
           })
         }
         useForeground={true}>

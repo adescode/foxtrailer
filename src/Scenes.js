@@ -17,11 +17,12 @@ import FAQ from './screens/FAQ';
 import Settings from './screens/Settings';
 import AboutDeveloper from './screens/AboutDeveloper';
 import AboutApp from './screens/AboutApp';
+import { exitAlert } from './services/androidBackButton';
 
 const Scenes = () => (
   <Router>
     <Stack key="root">
-      <Scene key="WelcomeScreen" component={WelcomeScreen} hideNavBar />
+      {/* <Scene key="WelcomeScreen" component={WelcomeScreen} hideNavBar /> */}
       <Drawer
         hideNavBar
         key="drawer"

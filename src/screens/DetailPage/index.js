@@ -58,10 +58,32 @@ export class DetailPage extends Component {
       movie_id: data.id,
     };
     // console.log('details props', this.props);
-    fetch_details(param);
+    fetch_details(param, this.handlePass, this.handleFail);
     handleAndroidBackButton(this._backButton);
     trackScreenView(Actions.currentScene);
   }
+
+  handleFail = err => {
+    console.log(err);
+  };
+
+  handlePass = payload => {
+    const {
+      details,
+      images,
+      videos,
+      // recommend,
+      similar,
+    } = payload;
+    const { data } = this.state;
+    this.setState({
+      data: { ...data, ...details },
+      images,
+      videos,
+      similar,
+      refreshing: false,
+    });
+  };
 
   componentWillUnmount() {
     removeAndroidBackButtonHandler();
@@ -99,45 +121,18 @@ export class DetailPage extends Component {
   };
 
   _backButton = () => {
-    Actions.pop();
+    const { close } = this.props;
+    if (close) {
+      Actions.reset('Trending');
+    } else {
+      Actions.pop();
+    }
     // if (Actions.currentScene === 'DetailPage') {
     //   Actions.reset(`${this.props.from}`);
     // } else {
     //   Actions.pop();
     // }
   };
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.details !== this.props.details) {
-      const {
-        details,
-        images,
-        videos,
-        // recommend,
-        similar,
-      } = this.props.details;
-      const { data } = this.state;
-      this.setState({
-        data: Object.assign(data, details),
-        images,
-        videos,
-        similar,
-        refreshing: false,
-      });
-    }
-
-    // if (prevProps.error !== this.props.error) {
-    //   console.log('this.props.error;', this.props.error);
-
-    //   const err = this.props.error;
-    //   this.setState({ refreshing: false }, () => {
-    //     Snackbar.show({
-    //       title: `${err.message}`,
-    //       duration: Snackbar.LENGTH_LONG,
-    //     });
-    //   });
-    // }
-  }
 
   _onRefresh = () => {
     this.setState({ refreshing: false });

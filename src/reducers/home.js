@@ -3,7 +3,7 @@ import axios from 'axios';
 import actionConstants from './actionConstants';
 import { TMDB_URL, TMDB_API_KEY } from '../constants/config';
 import Snackbar from 'react-native-snackbar';
-import { Platform } from 'react-native';
+// import { Platform } from 'react-native';
 
 const { GET_TRENDING, GET_LISTING, GET_DETAILS, GET_ERROR } = actionConstants;
 
@@ -35,7 +35,7 @@ export function fetch_trending() {
       .all([get_trending('movie'), get_trending('tv'), get_trending('person')])
       .then(
         axios.spread((movie, tv, person) => {
-          console.log('fetch_trending..', Platform.OS);
+          // console.log('fetch_trending..', Platform.OS);
 
           dispatch({
             type: GET_TRENDING,
@@ -57,7 +57,7 @@ export function fetch_trending() {
   };
 }
 
-export function fetch_details(param) {
+export function fetch_details(param, handlePass, handleFail) {
   const { media_type, movie_id } = param;
   const get_all =
     media_type === 'person'
@@ -72,18 +72,20 @@ export function fetch_details(param) {
   return async dispatch => {
     await axios.all(get_all).then(
       axios.spread((details, images, videos, similar) => {
+        const payload =
+          media_type === 'person'
+            ? { details: details.data, images: images.data }
+            : {
+                details: details.data,
+                images: images.data,
+                videos: videos.data.results,
+                similar: similar.data.results,
+              };
         dispatch({
           type: GET_DETAILS,
-          payload:
-            media_type === 'person'
-              ? { details: details.data, images: images.data }
-              : {
-                  details: details.data,
-                  images: images.data,
-                  videos: videos.data.results,
-                  similar: similar.data.results,
-                },
+          payload,
         });
+        handlePass(payload);
       }),
       err => {
         Snackbar.show({
@@ -93,6 +95,7 @@ export function fetch_details(param) {
               : 'Request failed. Bad Link',
           duration: Snackbar.LENGTH_LONG,
         });
+        handleFail(err);
         console.log('err', err);
       },
     );

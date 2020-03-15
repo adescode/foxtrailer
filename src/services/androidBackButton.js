@@ -1,6 +1,6 @@
 /* eslint-disable no-sparse-arrays */
 // packages
-import {BackHandler, Alert} from 'react-native';
+import { BackHandler, Alert } from 'react-native';
 /**
  * Attaches an event listener that handles the android-only hardware
  * back button
@@ -8,7 +8,7 @@ import {BackHandler, Alert} from 'react-native';
  */
 const handleAndroidBackButton = callback => {
   BackHandler.addEventListener('hardwareBackPress', () => {
-    callback ? callback() : () => {};
+    callback ? callback() : () => exitAlert();
     return true;
   });
 };
@@ -25,11 +25,15 @@ const removeAndroidBackButtonHandler = () => {
  */
 const exitAlert = () => {
   Alert.alert('Confirm exit', 'Do you want to quit the app?', [
-    {text: 'Yes', onPress: () => BackHandler.exitApp()},
-    {text: 'No', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+    { text: 'Yes', onPress: () => BackHandler.exitApp() },
+    {
+      text: 'No',
+      onPress: () => console.log('Cancel Pressed'),
+      style: 'cancel',
+    },
   ]);
 };
-export {handleAndroidBackButton, removeAndroidBackButtonHandler, exitAlert};
+export { handleAndroidBackButton, removeAndroidBackButtonHandler, exitAlert };
 
 //example
 
