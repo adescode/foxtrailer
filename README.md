@@ -8,7 +8,7 @@ Discover Movies and TV shows
 
 ### Download Foxtrailer
 
-- [Download foxtrailer from play store - v1.0.7](https://play.google.com/store/apps/details?id=com.foxtrailer)
+- [Download foxtrailer from play store - v1.0.9](https://play.google.com/store/apps/details?id=com.foxtrailer)
 
 ### What's included
 
@@ -89,8 +89,7 @@ Default image might not work on android debug version, but it works on ios.
 - [ ] Implement functional favorite movie details.
 - [ ] Add splash screen and Icon to iOS.
 - [ ] Remove inline style.
-- [ ] Allow Android back button on some other screens.
-- [ ] Create separate element for some functions in details page.
+- [x] Allow Android back button in some other screens.
 - [ ] Clean up the entire code.
 - [ ] Image download on ios not working.
 

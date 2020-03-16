@@ -137,7 +137,7 @@ class DrawerContent extends React.Component {
                     <Text style={styles.drawerListItem}>Version</Text>
                   </View>
                   <View>
-                    <Text style={styles.drawerListItem}>v1.0.8</Text>
+                    <Text style={styles.drawerListItem}>v1.0.9</Text>
                   </View>
                 </View>
               </View>
