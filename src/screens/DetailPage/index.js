@@ -12,6 +12,7 @@ import {
   StyleSheet,
   Share,
   Linking,
+  Platform,
 } from 'react-native';
 import {
   Container,
@@ -704,7 +705,7 @@ export class DetailPage extends Component {
             style={{
               flex: 1,
               position: 'absolute',
-              top: -15,
+              top: Platform.OS === 'ios' ? 15 : -15,
               right: -15,
               width: 150,
             }}
