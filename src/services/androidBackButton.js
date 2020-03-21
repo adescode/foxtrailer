@@ -28,23 +28,11 @@ const exitAlert = () => {
     { text: 'Yes', onPress: () => BackHandler.exitApp() },
     {
       text: 'No',
-      onPress: () => console.log('Cancel Pressed'),
+      onPress: () => {
+        console.log('Cancel Pressed');
+      },
       style: 'cancel',
     },
   ]);
 };
 export { handleAndroidBackButton, removeAndroidBackButtonHandler, exitAlert };
-
-//example
-
-// componentDidMount() {
-//   handleAndroidBackButton(this._backButton);
-// }
-
-// componentWillUnmount() {
-//   removeAndroidBackButtonHandler();
-// }
-
-// _backButton = () => {
-//   Actions.pop();
-// };

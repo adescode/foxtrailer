@@ -64,7 +64,7 @@ export class DetailPage extends Component {
   }
 
   handleFail = err => {
-    console.log(err);
+    console.error(err);
   };
 
   handlePass = payload => {

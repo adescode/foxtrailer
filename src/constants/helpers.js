@@ -27,7 +27,7 @@ export const showAlert = (title, message, action) => {
       { text: 'Sure', onPress: () => action },
       {
         text: 'No Thanks!',
-        onPress: () => console.log('No Thanks Pressed'),
+        onPress: () => {},
         style: 'cancel',
       },
     ],

@@ -51,7 +51,7 @@ export function fetch_trending() {
             title: `${err.message}`,
             duration: Snackbar.LENGTH_LONG,
           });
-          console.log('err', err);
+          console.error('err', err);
         },
       );
   };
@@ -96,7 +96,7 @@ export function fetch_details(param, handlePass, handleFail) {
           duration: Snackbar.LENGTH_LONG,
         });
         handleFail(err);
-        console.log('err', err);
+        console.error('err', err);
       },
     );
   };
@@ -122,7 +122,7 @@ export function fetch_Listing(param) {
             title: `${err.message}`,
             duration: Snackbar.LENGTH_LONG,
           });
-          console.log('err', err);
+          console.error('err', err);
         },
       );
   };
