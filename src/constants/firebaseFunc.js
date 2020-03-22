@@ -73,7 +73,7 @@ export const requestFcmPermission = () => {
       // User has authorized
     })
     .catch(error => {
-      console.error('error', error);
+      console.log('error', error);
       Snackbar.show({
         title: 'Notification permissions rejected',
         duration: Snackbar.LENGTH_LONG,

@@ -80,6 +80,8 @@
 		0439E11C2357C9E00048F008 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0439E11E2357C9E00048F008 /* libYoga.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libYoga.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0439E1202357C9E00048F008 /* libYoutubePlayer-in-WKWebView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libYoutubePlayer-in-WKWebView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		04544A62242673AD00AA5005 /* foxtrailerRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = foxtrailerRelease.entitlements; path = foxtrailer/foxtrailerRelease.entitlements; sourceTree = "<group>"; };
+		04544A63242673D400AA5005 /* foxtrailer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = foxtrailer.entitlements; path = foxtrailer/foxtrailer.entitlements; sourceTree = "<group>"; };
 		046E980F23A98E26005524F2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "foxtrailer/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0493F1602357C7BE0074FEEF /* libreact-native-config.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-config.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* foxtrailer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = foxtrailer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +168,8 @@
 		13B07FAE1A68108700A75B9A /* foxtrailer */ = {
 			isa = PBXGroup;
 			children = (
+				04544A63242673D400AA5005 /* foxtrailer.entitlements */,
+				04544A62242673AD00AA5005 /* foxtrailerRelease.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -375,6 +379,9 @@
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 8NAL6UBU5S;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -771,16 +778,19 @@
 			baseConfigurationReference = CEFB5A77B8CE947603D76378 /* Pods-foxtrailer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = foxtrailer/foxtrailer.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = 8NAL6UBU5S;
 				INFOPLIST_FILE = foxtrailer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.9;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.foxtrailer;
 				PRODUCT_NAME = foxtrailer;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -791,15 +801,18 @@
 			baseConfigurationReference = 6E2A03ED27468E7B90174282 /* Pods-foxtrailer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = foxtrailer/foxtrailerRelease.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8NAL6UBU5S;
 				INFOPLIST_FILE = foxtrailer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.9;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.foxtrailer;
 				PRODUCT_NAME = foxtrailer;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

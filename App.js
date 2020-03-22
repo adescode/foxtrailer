@@ -8,12 +8,14 @@
 
 import React, { Component } from 'react';
 import codePush from 'react-native-code-push';
+import SplashScreen from 'react-native-splash-screen';
 import createStore from './src/store/createStore';
 import Setup from './src/Setup';
 import { checkFcmPermission } from './src/constants/firebaseFunc';
 
 class App extends Component {
   componentDidMount() {
+    SplashScreen.hide();
     checkFcmPermission();
     codePush.sync({
       installMode: codePush.InstallMode.IMMEDIATE,

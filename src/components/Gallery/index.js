@@ -175,13 +175,13 @@ export class GalleryComponent extends Component {
                   defaultSource={require('../../assets/movie_default.jpg')}
                   style={[
                     imageType === 'posters'
-                      ? { flex: 1, width }
+                      ? { width, height: height - 100 }
                       : { width, height: height / 3.5 },
                   ]}
                   onLoadStart={() => this.setState({ isLoading: true })}
                   onLoadEnd={() => this.setState({ isLoading: false })}
                   onError={() => this.setState({ isLoading: false })}
-                  // resizeMode={FastImage.resizeMode.contain}
+                  resizeMode={FastImage.resizeMode.contain}
                 />
               </View>
             ))}
