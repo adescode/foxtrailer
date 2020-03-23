@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:foxtrailer.xcodeproj">
+      location = "group:/Users/mac/Documents/Adescode/projects/foxtrailer/ios/foxtrailer.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

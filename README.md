@@ -1,6 +1,6 @@
 # FoxTrailer
 
-Discover Movies and TV shows
+The easiest and fastest way to find and discover movies and tv shows on your device. You can view trending movie, download wallpapers, watch latest movie trailer.
 
 
 ![FoxTrailer-screenshots](https://firebasestorage.googleapis.com/v0/b/lovemate-5fd27.appspot.com/o/Screenshot_20191004-161929.png?alt=media&token=a5a725bc-1f55-40b9-8e25-376d5272ab10)
