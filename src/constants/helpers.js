@@ -1,13 +1,13 @@
 import { Share, Platform, Linking, Alert } from 'react-native';
-import { STORE_LINK } from './config';
+import { STORE_LINK, MARKET_LINK } from './config';
 import Snackbar from 'react-native-snackbar';
 import { trackShare } from './firebaseFunc';
 
 export const onShare = async () => {
   try {
     await Share.share({
-      message: `FoxTrailer, your movie trailer app. Download foxtrailer here ${STORE_LINK}`,
-      url: STORE_LINK,
+      message: `FoxTrailer, your movie trailer app. Download foxtrailer here ${MARKET_LINK}`,
+      url: MARKET_LINK,
       title: 'FoxTrailer',
     });
     trackShare();
@@ -24,7 +24,7 @@ export const showAlert = (title, message, action) => {
     title,
     message,
     [
-      { text: 'Sure', onPress: () => action },
+      { text: 'Sure', onPress: () => action(MARKET_LINK) },
       {
         text: 'No Thanks!',
         onPress: () => {},
@@ -50,9 +50,9 @@ export const onRateUs = () => {
     'Would you like to share your review with us? This will help and motivate us a lot.';
   if (Platform.OS !== 'ios') {
     //To open the Google Play Store
-    showAlert(title, message, onLinkingUrl(STORE_LINK));
+    showAlert(title, message, onLinkingUrl);
   } else {
     //To open the Apple App Store
-    showAlert(title, message, onLinkingUrl(STORE_LINK));
+    showAlert(title, message, onLinkingUrl);
   }
 };

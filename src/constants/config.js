@@ -20,11 +20,13 @@ export const LINKEDIN = 'https://www.linkedin.com/in/adescode/';
 export const PORTFOLIO = 'https://portfolio.adescode.com/';
 
 export const GOOGLE_PACKAGE_NAME = 'com.foxtrailer';
-export const APPLE_STORE_ID = 'com.foxtrailer';
+export const APPLE_STORE_ID = 'com.adescode.foxtrailer';
 export const MARKET_LINK =
-  Platform !== 'ios'
+  Platform.OS !== 'ios'
     ? `market://details?id=${GOOGLE_PACKAGE_NAME}`
     : `itms://itunes.apple.com/in/app/apple-store/${APPLE_STORE_ID}`;
 
 export const STORE_LINK =
-  'https://play.google.com/store/apps/details?id=com.foxtrailer';
+  Platform.OS !== 'ios'
+    ? `https://play.google.com/store/apps/details?id=${GOOGLE_PACKAGE_NAME}`
+    : `itms://itunes.apple.com/in/app/apple-store/${APPLE_STORE_ID}`;
