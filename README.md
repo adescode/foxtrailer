@@ -86,10 +86,10 @@ Default image might not work on android debug version, but it works on ios.
 - [x] Implement functional share button.
 - [x] Implement deep linking.
 - [x] Add code push.
-- [ ] Implement functional favorite movie details.
-- [ ] Add splash screen and Icon to iOS.
-- [ ] Remove inline style.
 - [x] Allow Android back button in some other screens.
+- [x] Add splash screen and Icon to iOS.
+- [ ] Add Search feature(Movie and tv show).
+- [ ] Remove inline style.
 - [ ] Clean up the entire code.
 - [ ] Image download on ios not working.
 
