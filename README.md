@@ -3,7 +3,7 @@
 The easiest and fastest way to find and discover movies and tv shows on your device. You can view trending movie, download wallpapers, watch latest movie trailer.
 
 
-![FoxTrailer-screenshots](https://firebasestorage.googleapis.com/v0/b/lovemate-5fd27.appspot.com/o/Screenshot_20191004-161929.png?alt=media&token=a5a725bc-1f55-40b9-8e25-376d5272ab10)
+![FoxTrailer-screenshots](https://firebasestorage.googleapis.com/v0/b/fox-trailer.appspot.com/o/FCMImages%2F83244731-fd5f-48aa-9b18-b87dbf5fb74e.jpg?alt=media&token=2e46c227-3a86-4202-b985-67c1725cbf0f)
 
 
 ### Download Foxtrailer
@@ -88,10 +88,10 @@ Default image might not work on android debug version, but it works on ios.
 - [x] Add code push.
 - [x] Allow Android back button in some other screens.
 - [x] Add splash screen and Icon to iOS.
-- [ ] Add Search feature(Movie and tv show).
-- [ ] Remove inline style.
-- [ ] Clean up the entire code.
-- [ ] Image download on ios not working.
+- [x] Add Search feature(Movie and tv show).
+- [x] Remove inline style.
+- [x] Clean up the entire code.
+- [x] Image download on ios not working.
 
 ## ISSUES
 - Proguard app shrinking giving networking error after build. App size can still be less than 10mb if code is well minified.
